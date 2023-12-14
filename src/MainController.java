@@ -3,7 +3,6 @@ import Model.Channel;
 import Model.Schedule;
 import Model.ScheduleWorker;
 import Model.XMLParserWorker;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;

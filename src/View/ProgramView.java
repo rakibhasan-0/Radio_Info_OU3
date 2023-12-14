@@ -1,9 +1,7 @@
 package View;
 import javax.swing.*;
 import java.awt.*;
-
 public class ProgramView {
-
     private JTable programTable;
     private JScrollPane programScrollPane;
     private JPanel cardPanel;
@@ -18,7 +16,6 @@ public class ProgramView {
         };
         programTable.setRowHeight(30);
         programScrollPane = new JScrollPane(programTable);
-
     }
 
     public JTable getProgramTable(){
