@@ -1,39 +1,49 @@
 package Model;
-
-import Model.Channel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ScheduleParser {
-    private final ArrayList<Model.Schedule> schedules = new ArrayList<Model.Schedule>();
-    private final Channel channel;
+    private final ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+    private final TimeChecker timeChecker;
+    private final DateTimeFormatter parser = DateTimeFormatter.ISO_DATE_TIME;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 
     public ScheduleParser(Channel channel){
-
-        this.channel = channel;
         String scheduleURL = channel.getScheduleURL();
-        // since space stated that we have to fetch sechedule from 12 before and 12 hours after of the current time
-        // which means that may need to fetch data from the previous or next day I guess.
+        timeChecker = new TimeChecker();
+
+        if(scheduleURL != null){
+            timeChecker.setTwelveHoursAfterwards();
+            timeChecker.setTwelveHoursFromBackward();
+            if(timeChecker.needToFetchDataFromTomorrow()){
+                scheduleURL = channel.getScheduleURL()+"&date="+timeChecker.getTommorowDate();
+                fetchDataFromAPI(scheduleURL);
+            }
+            if(timeChecker.needToFetchDataFromYesterday()){
+                scheduleURL = channel.getScheduleURL()+"&date="+timeChecker.getYesterdayDate();
+                fetchDataFromAPI(channel.getScheduleURL());
+                fetchDataFromAPI(scheduleURL);
+            }
+        }
+    }
+
+    private void fetchDataFromAPI(String scheduleURL) {
         if(scheduleURL != null){
             try{
-                LocalTime now = LocalTime.now();
-                LocalTime sixHourBefore = now.minusHours(12);
-                LocalTime twelveHoursAfter = now.plusHours(12);
-                LocalTime cutOffTime = LocalTime.of(twelveHoursAfter.getHour(), 0);
-                scheduleURL = channel.getScheduleURL();
                 URL url = new URL(scheduleURL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
@@ -44,38 +54,62 @@ public class ScheduleParser {
                     doc.normalize();
                     processSchedule(doc);
                 }
-            } catch (ProtocolException | MalformedURLException | ParserConfigurationException | SAXException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (ParserConfigurationException | SAXException | IOException e) {
                 throw new RuntimeException(e);
             }
-
         }else{
-            System.out.println("There is nothing to fetch");
+            JOptionPane.showMessageDialog(null, "There is nothing to fetch");
         }
     }
 
-    private void  processSchedule(Document document){
+    private void processSchedule(Document document) {
         NodeList nodeList = document.getElementsByTagName("scheduledepisode");
-        for(int i = 0; i < nodeList.getLength(); i++){
-            Element element = (Element) nodeList.item(i);
-            String programName = getElementTextContent(element,"title");
-            String description = getElementTextContent(element,"description");
-            String imageURL = getElementTextContent(element,"imageurl");
-            String starttimeutc = getElementTextContent(element,"starttimeutc");
-            String endtimeutc = getElementTextContent(element,"endtimeutc");
-            LocalTime startTime = LocalTime.parse(starttimeutc.substring(11, 19), DateTimeFormatter.ofPattern("HH:mm:ss"));
-            LocalTime endTime = LocalTime.parse(endtimeutc.substring(11, 19), DateTimeFormatter.ofPattern("HH:mm:ss"));
-            Model.Schedule schedule = new Model.ScheduleBuilder()
-                    .setEndTime(endTime)
-                    .setStartTime(startTime)
-                    .setProgramName(programName)
-                    .setImage(imageURL)
-                    .setDescription(description)
-                    .build();
+        ZonedDateTime upperTime = timeChecker.getTwelveHoursFromAfterwards();
+        ZonedDateTime lowerTime = timeChecker.getTwelveHoursFromBackward();
 
-            schedules.add(schedule);
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Element element = (Element) nodeList.item(i);
+            String starttimeutc = getElementTextContent(element, "starttimeutc");
+            if(starttimeutc == null){
+                continue;
+            }else{
+                ZonedDateTime startTimeZoned = ZonedDateTime.parse(starttimeutc, parser);
+                ZonedDateTime startTimeInLocalZone = startTimeZoned.withZoneSameInstant(ZoneId.systemDefault());
+                createSchedule(startTimeInLocalZone, lowerTime, upperTime, element);
+            }
+
         }
+    }
+
+    private void createSchedule(ZonedDateTime startTimeInLocalZone, ZonedDateTime lowerTime, ZonedDateTime upperTime, Element element) {
+        if(startTimeInLocalZone.isAfter(lowerTime) && startTimeInLocalZone.isBefore(upperTime)){
+            String startTime = startTimeInLocalZone.format(formatter);
+            String programName = getElementTextContent(element, "title");
+            String description = getElementTextContent(element, "description");
+            String imageURL = getElementTextContent(element, "imageurl");
+            String endtimeutc = getElementTextContent(element, "endtimeutc");
+            String endTime  = null;
+            if (endtimeutc != null) {
+                ZonedDateTime endTimeZoned = ZonedDateTime.parse(endtimeutc,parser);
+                ZonedDateTime endTimeInLocalZone = endTimeZoned.withZoneSameInstant(ZoneId.systemDefault());
+                endTime  = endTimeInLocalZone.format(formatter);
+            }
+            instanstiateSchedule(startTime, endTime, programName, imageURL, description);
+        }
+    }
+
+
+
+    private void instanstiateSchedule(String startTime, String endTime, String programName, String imageURL, String description) {
+        Schedule schedule = new ScheduleBuilder()
+                .setStartTime(startTime)
+                .setEndTime(endTime)
+                .setProgramName(programName)
+                .setImage(imageURL)
+                .setDescription(description)
+                .build();
+
+        schedules.add(schedule);
     }
 
     private String getElementTextContent(Element parentElement, String childElementName) {
@@ -86,8 +120,7 @@ public class ScheduleParser {
         return null;
     }
 
-    public ArrayList<Model.Schedule> getScheduleList() {
-        //System.out.println("Size of the Model.Schedule    " + schedules.size());
+    public ArrayList<Schedule> getScheduleList() {
         return schedules;
     }
 

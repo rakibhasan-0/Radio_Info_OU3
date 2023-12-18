@@ -5,13 +5,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 
 public class ScheduleBuilder {
     private String programName;
     private String description;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private  String startTime;
+    private String endTime;
     private Image image;
 
 
@@ -29,13 +31,13 @@ public class ScheduleBuilder {
     }
 
 
-    public ScheduleBuilder setStartTime(LocalTime startTime) {
+    public ScheduleBuilder setStartTime(String startTime) {
         this.startTime = startTime;
         return this;
     }
 
 
-    public ScheduleBuilder setEndTime(LocalTime endTime) {
+    public ScheduleBuilder setEndTime(String endTime) {
         this.endTime = endTime;
         return this;
     }
@@ -48,7 +50,7 @@ public class ScheduleBuilder {
 
 
     private Image processChannelsImage(String imageUrl) {
-        int IMAGE_WIDTH = 280, IMAGE_HEIGHT = 280;
+        int IMAGE_WIDTH = 320, IMAGE_HEIGHT = 420;
         if (imageUrl == null || imageUrl.isEmpty()) {
             return null;
         }try {
