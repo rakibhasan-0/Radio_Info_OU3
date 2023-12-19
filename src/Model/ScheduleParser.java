@@ -29,17 +29,23 @@ public class ScheduleParser {
         if(scheduleURL != null){
             timeChecker.setTwelveHoursAfterwards();
             timeChecker.setTwelveHoursFromBackward();
+
             if(timeChecker.needToFetchDataFromTomorrow()){
                 scheduleURL = channel.getScheduleURL()+"&date="+timeChecker.getTommorowDate();
+                fetchDataFromAPI(channel.getScheduleURL());
                 fetchDataFromAPI(scheduleURL);
+
             }
             if(timeChecker.needToFetchDataFromYesterday()){
+                System.out.println("hello");
                 scheduleURL = channel.getScheduleURL()+"&date="+timeChecker.getYesterdayDate();
                 fetchDataFromAPI(channel.getScheduleURL());
                 fetchDataFromAPI(scheduleURL);
             }
         }
     }
+
+
 
     private void fetchDataFromAPI(String scheduleURL) {
         if(scheduleURL != null){
@@ -62,6 +68,8 @@ public class ScheduleParser {
         }
     }
 
+
+
     private void processSchedule(Document document) {
         NodeList nodeList = document.getElementsByTagName("scheduledepisode");
         ZonedDateTime upperTime = timeChecker.getTwelveHoursFromAfterwards();
@@ -77,9 +85,10 @@ public class ScheduleParser {
                 ZonedDateTime startTimeInLocalZone = startTimeZoned.withZoneSameInstant(ZoneId.systemDefault());
                 createSchedule(startTimeInLocalZone, lowerTime, upperTime, element);
             }
-
         }
     }
+
+
 
     private void createSchedule(ZonedDateTime startTimeInLocalZone, ZonedDateTime lowerTime, ZonedDateTime upperTime, Element element) {
         if(startTimeInLocalZone.isAfter(lowerTime) && startTimeInLocalZone.isBefore(upperTime)){
@@ -111,6 +120,8 @@ public class ScheduleParser {
 
         schedules.add(schedule);
     }
+
+
 
     private String getElementTextContent(Element parentElement, String childElementName) {
         NodeList list = parentElement.getElementsByTagName(childElementName);

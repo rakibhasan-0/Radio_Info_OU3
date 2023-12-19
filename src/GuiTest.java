@@ -1,4 +1,4 @@
-import View.ChannelView;
+import Controll.Controller;
 import View.MenuBarView;
 import View.ProgramView;
 
@@ -15,14 +15,13 @@ public class GuiTest {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         MenuBarView menuBarView = new MenuBarView();
-        ChannelView channelView = new ChannelView();
         ProgramView programView = new ProgramView();
         frame.setLayout(new BorderLayout());
         initializeNorthPanel(frame, menuBarView);
         frame.setJMenuBar(menuBarView.getMenuBar());
-        frame.add(channelView.getScrollChannel(), BorderLayout.WEST);
+        Controller controller = new Controller(menuBarView, programView);
+        frame.add(programView.getScrollChannel(), BorderLayout.WEST);
         frame.add(programView.getProgramScrollPane(), BorderLayout.CENTER);
-        menuBarView.startClock();
         frame.setVisible(true);
     }
 

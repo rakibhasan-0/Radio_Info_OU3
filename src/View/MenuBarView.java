@@ -12,7 +12,6 @@ public class MenuBarView {
     private final JPanel timePanel;
     private final JLabel selectedChannelLabel;
     private final JMenu channelTypes;
-    private LocalDateTime lastUpdateTime;
     private final JLabel programUpdatedLabel;
 
     public MenuBarView() {
@@ -20,16 +19,13 @@ public class MenuBarView {
         JMenu channel = new JMenu("Channel");
         JMenu schedule = new JMenu("Schedule");
         channelTypes = new JMenu("Channel Types");
-
         JMenuItem updateChannel = new JMenuItem("Update");
         JMenuItem updateSchedule = new JMenuItem("Update");
-
         channel.add(updateChannel);
         schedule.add(updateSchedule);
         menuBar.add(channel);
         menuBar.add(schedule);
         menuBar.add(channelTypes);
-
         timePanel = new JPanel(new GridLayout(2, 4));
         currentTimeLabel = new JLabel();
         programUpdatedLabel = new JLabel("Program updated: ");
@@ -37,10 +33,8 @@ public class MenuBarView {
         timePanel.add(currentTimeLabel);
         timePanel.add(programUpdatedLabel);
         timePanel.add(channelUpdatedLabel);
-
         selectedChannelLabel = new JLabel("Selected Channel: ");
         timePanel.add(selectedChannelLabel);
-
     }
 
     public JMenuBar getMenuBar() {
@@ -74,14 +68,6 @@ public class MenuBarView {
         return timePanel;
     }
 
-    public void startClock() {
-        Timer clockTimer = new Timer(1000, e -> {
-            LocalDateTime currentTime = LocalDateTime.now();
-            SwingUtilities.invokeLater(() -> setCurrentTimeLabel(currentTime));
-        });
-
-        clockTimer.start();
-    }
 
     public void setCurrentTimeLabel(LocalDateTime currentTime) {
         String formattedTime = "Current Time: " + currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
