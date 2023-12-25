@@ -1,15 +1,8 @@
 package Model;
 import Controll.Observer;
 import Controll.Subject;
-
-
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implements Subject {
     private ArrayList<Schedule> schedules;
