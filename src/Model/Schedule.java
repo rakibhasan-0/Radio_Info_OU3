@@ -5,6 +5,7 @@ import java.awt.*;
  * That class represents a specific channel's program information such as the program name,
  * start time, end time, image and description. That class will be used in the builder pattern
  * to build a program's information.
+ * @author Gazi Md Rakibul Hasan
  */
 public class Schedule {
     private  String programName = null;

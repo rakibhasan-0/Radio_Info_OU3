@@ -1,12 +1,8 @@
 package Controll;
-import Controll.Controller;
-import Controll.Observer;
 import Model.Channel;
 import Model.Schedule;
 import Model.ScheduleWorker;
 import Model.XMLParserWorker;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
