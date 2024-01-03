@@ -2,7 +2,10 @@ package Model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,6 +30,7 @@ public class ScheduleParser {
     private final TimeChecker timeChecker =  new TimeChecker();
     private final DateTimeFormatter parser = DateTimeFormatter.ISO_DATE_TIME;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final String scheduleURL;
 
 
     /**
@@ -36,27 +40,13 @@ public class ScheduleParser {
      * @param channel the channel.
      */
     public ScheduleParser(Channel channel) {
-        String scheduleURL = initializeScheduleURL(channel);
+        scheduleURL = initializeScheduleURL(channel);
         if (scheduleURL != null) {
             fetchDataBasedOnTime(channel);
         }
     }
 
-    /**
-     * For the testing purpose
-     */
-    public void fetchChannelScedule(HttpURLConnection scheduleURL) throws IOException, ParserConfigurationException, SAXException {
-        scheduleURL.setRequestMethod("GET");
-        if(scheduleURL.getResponseCode() == HttpURLConnection.HTTP_OK){
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = factory.newDocumentBuilder();
-            Document doc = documentBuilder.parse(scheduleURL.getInputStream());
-            doc.normalize();
-            processSchedule(doc);
-        }else {
-            System.err.println("Error: HTTP request failed with code " + scheduleURL.getResponseCode()); // show that on the JOPtion.Pane()
-        }
-    }
+
 
 
 
@@ -69,6 +59,7 @@ public class ScheduleParser {
     private String initializeScheduleURL(Channel channel) {
         String scheduleURL = channel.getScheduleURL();
         if (scheduleURL != null) {
+            scheduleURL = "http://api.sr.se/api/v2/scheduledepisodes?channelid="+channel.getId()+"&pagination=false";
             timeChecker.setTwelveHoursAfterwards();
             timeChecker.setTwelveHoursFromBackward();
         }
@@ -83,13 +74,13 @@ public class ScheduleParser {
      */
     private void fetchDataBasedOnTime(Channel channel) {
         if (timeChecker.needToFetchDataFromTomorrow()) {
-            String tomorrowURL = channel.getScheduleURL() + "&date=" + timeChecker.getTommorowDate();
+            String tomorrowURL = scheduleURL + "&date=" + timeChecker.getTommorowDate();
             fetchDataFromAPI(channel.getScheduleURL());
             fetchDataFromAPI(tomorrowURL);
         }
 
         if (timeChecker.needToFetchDataFromYesterday()) {
-            String yesterdayURL = channel.getScheduleURL() + "&date=" + timeChecker.getYesterdayDate();
+            String yesterdayURL = scheduleURL + "&date=" + timeChecker.getYesterdayDate();
             fetchDataFromAPI(channel.getScheduleURL());
             fetchDataFromAPI(yesterdayURL);
         }
@@ -226,5 +217,35 @@ public class ScheduleParser {
     public ArrayList<Schedule> getScheduleList() {
         return schedules;
     }
+
+
+
+
+
+
+    /**
+     * For the testing purpose
+     */
+    public void fetchChannelScedule(HttpURLConnection scheduleURL) throws IOException {
+        try {
+            scheduleURL.setRequestMethod("GET");
+        } catch (ProtocolException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            if(scheduleURL.getResponseCode() == HttpURLConnection.HTTP_OK){
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+                Document doc = documentBuilder.parse(scheduleURL.getInputStream());
+                doc.normalize();
+                processSchedule(doc);
+            }else {
+                JOptionPane.showMessageDialog(null,"Error: HTTP request failed with code " + scheduleURL.getResponseCode());
+            }
+        } catch (IOException | ParserConfigurationException | SAXException e) {
+            JOptionPane.showMessageDialog(null,"Error: HTTP request failed with code " + scheduleURL.getResponseCode());
+        }
+    }
+
 
 }

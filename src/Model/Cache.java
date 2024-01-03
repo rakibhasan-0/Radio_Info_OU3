@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * That class used to cache the information of the channel and its corresponding program's
@@ -11,14 +12,14 @@ import java.util.Map;
  **/
 
 public class Cache {
-    private final Map<Channel, ArrayList<Schedule>> caches;
+    private final ConcurrentHashMap <Channel, ArrayList<Schedule>> caches;
 
     /**
-     * The constructor of the Cache class, we will use the synchronized hash map in order to
+     * The constructor of the Cache class, we will use the concurrent hash map in order to
      * prevent multithread problems.
      */
     public Cache() {
-        this.caches = Collections.synchronizedMap(new HashMap<>());
+        this.caches = new ConcurrentHashMap<>();
     }
 
     /**
@@ -66,13 +67,6 @@ public class Cache {
         if (channel != null && hasChannel(channel) ) {
             caches.remove(channel);
         }
-    }
-
-    /*
-     * for the testing purposes
-     */
-    public boolean isEmpty(){
-        return caches.isEmpty();
     }
 
 

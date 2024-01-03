@@ -2,7 +2,10 @@ package Model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -57,18 +60,47 @@ public class XMLParser {
             URL url = new URL(baseUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
+                xmlFileValidation(factory, builder);
                 Document doc = builder.parse(connection.getInputStream());
                 doc.normalize();
+
                 processChannels(doc);
             } else {
-                System.err.println("Error: HTTP request failed with code " + connection.getResponseCode()); // show that on the JOPtion.Pane()
+                System.err.println("Error: HTTP request failed with code " + connection.getResponseCode());
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             manageErrors(e);
         }
+    }
+
+
+    /**
+     * It will validate the xml file by using DTD validation.
+     * @param factory the factory
+     * @param builder the builder
+     */
+    private static void xmlFileValidation(DocumentBuilderFactory factory, DocumentBuilder builder) {
+        factory.setValidating(true);
+        factory.setNamespaceAware(true);
+        builder.setErrorHandler(new ErrorHandler(){
+            public void warning(SAXParseException e) throws SAXException {
+                System.out.println("Warning: " + e.getMessage());
+            }
+
+            public void error(SAXParseException e) throws SAXException {
+                System.out.println("Error: " + e.getMessage());
+                throw e;
+            }
+
+            public void fatalError(SAXParseException e) throws SAXException {
+                System.out.println("Fatal error: " + e.getMessage());
+                throw e;
+            }
+        });
     }
 
 
@@ -78,7 +110,7 @@ public class XMLParser {
      */
     private void manageErrors(Exception e) {
         if (e instanceof MalformedURLException) {
-            JOptionPane.showMessageDialog(null, "Error: The URL is malformed");
+            JOptionPane.showMessageDialog(null, "Error: The URL is disformed");
         } else if (e instanceof IOException) {
             JOptionPane.showMessageDialog(null, "I/O Error: Problem occurred during communication with the API");
         } else if (e instanceof ParserConfigurationException) {

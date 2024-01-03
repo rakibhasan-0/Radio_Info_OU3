@@ -24,7 +24,7 @@ public class APIManager implements Observer {
 
 
     /**
-     * That method invoked when channels has fetched from the API.
+     * That method invoked when channels have fetched from the API.
      * Thereafter, it notifies the Controller with the data.
      * @param channels The list of channels.
      */
@@ -78,7 +78,7 @@ public class APIManager implements Observer {
      */
     @Override
     public void scheduleUpdate(Channel channel, ArrayList<Schedule> schedules) {
-        System.out.println("Scheduling update/ we are getting the schedule");
+        //System.out.println("Scheduling update/ we are getting the schedule");
         controller.getSchedule(channel, schedules);
     }
 

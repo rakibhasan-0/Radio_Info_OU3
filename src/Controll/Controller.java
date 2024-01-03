@@ -117,13 +117,15 @@ public class Controller implements ChannelListener {
      */
     public void updatedChannels (HashSet<String> types, HashMap<String,ArrayList<Channel>> channelWithType) {
         channelWithTypeForTesting = channelWithType;
+        cache.clearCache();
         SwingUtilities.invokeLater(() -> {
-            cache.clearCache();
-            uiManager.setupChannelButtons(types,channelWithType);
-            uiManager.setChannelUpdatedLabel();
-            resetAutomaticUpdates();
-        });
+            if(!types.isEmpty()){
+                uiManager.setupChannelButtons(types,channelWithType);
+                uiManager.setChannelUpdatedLabel();
+                resetAutomaticUpdates();
+            }
 
+        });
 
     }
 
@@ -168,10 +170,9 @@ public class Controller implements ChannelListener {
                 uiManager.updateProgramTable(channel, schedules);
             });
         }else {
-            SwingUtilities.invokeLater(() -> {
-                uiManager.setScheduleIsUpdatingLabel(); // won't you update the uiMangerTable after fetching the data?
-                apiManager.fetchScheduleForChannel(selectedChannel); // don't use any updates related task
-            });
+            // won't you update the uiMangerTable after fetching the data?
+            SwingUtilities.invokeLater(uiManager::setScheduleIsUpdatingLabel);
+            apiManager.fetchScheduleForChannel(selectedChannel);
         }
     }
 

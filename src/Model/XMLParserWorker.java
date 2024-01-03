@@ -29,8 +29,6 @@ public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implem
         XMLParser parser = new XMLParser();
         return parser.getChannels();
     }
-
-
     /**
      * That method will be called from the EDT, and it will get the result
      * of the background thread, and it categorize the channels with the types.

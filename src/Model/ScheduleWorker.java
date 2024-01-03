@@ -3,11 +3,12 @@ import Controll.Observer;
 import Controll.Subject;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implements Subject {
     private ArrayList<Schedule> schedules;
-    private ArrayList<Observer> observers;
-    private Channel channel;
+    private final ArrayList<Observer> observers;
+    private final Channel channel;
 
     public ScheduleWorker(Channel channel){
         this.channel = channel;
@@ -23,12 +24,17 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
 
     @Override
     protected void done() {
+
         try {
             schedules = get();
             notifyObservers();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InterruptedException e) {
+            JOptionPane.showMessageDialog(null, "Interrupted: " + "Could not get schedules");
+        } catch (ExecutionException e) {
+           JOptionPane.showMessageDialog(null, "Execution: " + "Could not get schedules");
         }
+
+
     }
 
     @Override

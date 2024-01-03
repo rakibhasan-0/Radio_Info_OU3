@@ -43,7 +43,10 @@ public class UIManager {
      * menu item on the menu.
      */
     public void addChannelType() {
+
         JMenu channelTypeMenu = menuBarView.getChannelsTypeMenu();
+        channelTypeMenu.removeAll();
+
         for (String types : types){
             JMenuItem channelType = new JMenuItem(types);
             channelTypeMenu.add(channelType);

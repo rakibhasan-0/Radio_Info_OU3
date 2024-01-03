@@ -1,7 +1,6 @@
 import Controll.Controller;
 import View.MenuBarView;
 import View.ProgramView;
-
 import javax.swing.*;
 import java.awt.*;
 
