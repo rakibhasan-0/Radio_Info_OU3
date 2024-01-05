@@ -16,6 +16,7 @@ public class ChannelParserTest{
     @Test
     public void testXMLParsing() throws Exception {
         XMLParser parser = new XMLParser();
+        parser.fetchData();
         assertFalse(parser.getChannels().isEmpty());
     }
 

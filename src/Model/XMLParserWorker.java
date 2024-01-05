@@ -26,8 +26,8 @@ public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implem
      */
     @Override
     protected ArrayList<Channel> doInBackground()  {
-        XMLParser parser = new XMLParser();
-        return parser.getChannels();
+        DataFetchStrategy <Channel> parser = new XMLParser();
+        return parser.fetchData();
     }
     /**
      * That method will be called from the EDT, and it will get the result

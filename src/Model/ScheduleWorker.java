@@ -18,7 +18,7 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
 
     @Override
     protected ArrayList<Schedule> doInBackground()  {
-        ScheduleParser parser = new ScheduleParser(channel);
+        DataFetchStrategy<Schedule> parser = new ScheduleParser(channel);
         return parser.fetchData();
     }
 

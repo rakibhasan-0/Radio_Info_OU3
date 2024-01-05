@@ -21,11 +21,11 @@ import java.util.ArrayList;
  * Sverige Radio, and then parse them accordingly.
  * @author Gazi Md Rakibul Hasan
  */
-public class XMLParser {
+public class XMLParser implements DataFetchStrategy <Channel>{
     private final ArrayList<Channel> channels = new ArrayList<Channel>();
 
     public XMLParser() {
-        initiateParsingOfXML();
+
     }
 
     /**
@@ -197,4 +197,9 @@ public class XMLParser {
         return null;
     }
 
+    @Override
+    public ArrayList<Channel> fetchData() {
+        initiateParsingOfXML();
+        return this.getChannels();
+    }
 }
