@@ -124,9 +124,7 @@ public class Controller implements ChannelListener {
                 uiManager.setChannelUpdatedLabel();
                 resetAutomaticUpdates();
             }
-
         });
-
     }
 
     /**

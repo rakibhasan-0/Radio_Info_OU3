@@ -19,12 +19,11 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
     @Override
     protected ArrayList<Schedule> doInBackground()  {
         ScheduleParser parser = new ScheduleParser(channel);
-        return parser.getScheduleList();
+        return parser.fetchData();
     }
 
     @Override
     protected void done() {
-
         try {
             schedules = get();
             notifyObservers();
@@ -33,8 +32,6 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
         } catch (ExecutionException e) {
            JOptionPane.showMessageDialog(null, "Execution: " + "Could not get schedules");
         }
-
-
     }
 
     @Override

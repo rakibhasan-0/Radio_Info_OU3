@@ -25,13 +25,13 @@ import java.util.ArrayList;
  * @author Gazi Md Rakibul Hasan
  *
  */
-public class ScheduleParser {
+public class ScheduleParser implements DataFetchStrategy<Schedule>{
     private final ArrayList<Schedule> schedules = new ArrayList<Schedule>();
     private final TimeChecker timeChecker =  new TimeChecker();
     private final DateTimeFormatter parser = DateTimeFormatter.ISO_DATE_TIME;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private final String scheduleURL;
-
+    private String scheduleURL;
+    private final Channel channel;
 
     /**
      *
@@ -40,30 +40,23 @@ public class ScheduleParser {
      * @param channel the channel.
      */
     public ScheduleParser(Channel channel) {
-        scheduleURL = initializeScheduleURL(channel);
-        if (scheduleURL != null) {
-            fetchDataBasedOnTime(channel);
-        }
+        this.channel = channel;
+        initializeScheduleURL(channel);
     }
-
-
-
 
 
     /**
      * That mehtod initialize the given channel's url and calculate time frame
      * 12 hours after form the current time and 12 hours before from the current time.
      * @param channel the channel.
-     * @return The channel's schedule url.
      */
-    private String initializeScheduleURL(Channel channel) {
-        String scheduleURL = channel.getScheduleURL();
+    private void initializeScheduleURL(Channel channel) {
+        this.scheduleURL = channel.getScheduleURL();
         if (scheduleURL != null) {
             scheduleURL = "http://api.sr.se/api/v2/scheduledepisodes?channelid="+channel.getId()+"&pagination=false";
             timeChecker.setTwelveHoursAfterwards();
             timeChecker.setTwelveHoursFromBackward();
         }
-        return scheduleURL;
     }
 
 
@@ -220,9 +213,6 @@ public class ScheduleParser {
 
 
 
-
-
-
     /**
      * For the testing purpose
      */
@@ -248,4 +238,11 @@ public class ScheduleParser {
     }
 
 
+    @Override
+    public ArrayList<Schedule> fetchData() {
+        if (scheduleURL != null) {
+            fetchDataBasedOnTime(channel);
+        }
+        return this.getScheduleList();
+    }
 }
