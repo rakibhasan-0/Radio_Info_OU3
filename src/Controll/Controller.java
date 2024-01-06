@@ -168,7 +168,6 @@ public class Controller implements ChannelListener {
                 uiManager.updateProgramTable(channel, schedules);
             });
         }else {
-            // won't you update the uiMangerTable after fetching the data?
             SwingUtilities.invokeLater(uiManager::setScheduleIsUpdatingLabel);
             apiManager.fetchScheduleForChannel(selectedChannel);
         }
