@@ -78,11 +78,12 @@ public class ScheduleParserTest {
                 .setChannelName("p3")
                 .setScheduleURL("http://api.sr.se/v2/scheduledepisodes?channelid=132")
                 .setChannelType("Rikskanal")
+                .setChannelId(132)
                 .build();
 
         ScheduleParser parser = new ScheduleParser(p3);
         parser.fetchData();
-        assertFalse(parser.getScheduleList().isEmpty(), "Schedule list should not be empty");
+        assertFalse(parser.fetchData().isEmpty(), "Schedule list should not be empty");
     }
 
 
