@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="added">
+    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="test classes requried channel id.">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Radio_Info_OU3_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/ScheduleParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/ScheduleParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/TableCellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/TableCellTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Radio_Info_OU3.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,16 +22,46 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;MERGED&quot;,
+      &quot;assignee&quot;: {
+        &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+        &quot;username&quot;: &quot;ens20ghn&quot;,
+        &quot;fullname&quot;: &quot;Gazi Md Rakibul Hasan&quot;
+      }
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;MERGED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;ens20ghn&quot;,
+      &quot;fullname&quot;: &quot;Gazi Md Rakibul Hasan&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://git.cs.umu.se/ens20ghn/ou3_radio_info&quot;,
+    &quot;second&quot;: &quot;94add871-eb47-4cea-b55b-9f620dc71bbc&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2aYtYpdR9jCosiHcEg25OSrwg6v" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.RadioInfo.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JAR Application.Radio_Info_OU3.jar.executor": "Run",
@@ -48,9 +78,10 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/rakib/IdeaProjects/Radio_Info_OU3_L",
-    "project.structure.last.edited": "Libraries",
+    "last_opened_file_path": "C:/Users/rakib/IdeaProjects/Radio_Info_OU3_L/META-INF/MANIFEST.MF",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
@@ -69,22 +100,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TimeRelatedTest">
-    <configuration name="MenuBarViewTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Radio_Info_OU3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.MenuBarViewTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JAR Application.Radio_Info_OU3.jar">
     <configuration name="ProgramViewTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Radio_Info_OU3" />
       <extension name="coverage">
@@ -145,13 +161,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Radio_Info_OU3.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/Radio_Info_OU3.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Radio_Info_OU3.jar" />
         <item itemvalue="JUnit.TimeRelatedTest" />
         <item itemvalue="JUnit.TableCellTest" />
         <item itemvalue="JUnit.ScheduleParserTest" />
         <item itemvalue="JUnit.ProgramViewTest" />
-        <item itemvalue="JUnit.MenuBarViewTest" />
       </list>
     </recent_temporary>
   </component>
@@ -206,11 +226,27 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1704729132431</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="test classes requried channel id.">
+      <option name="closed" value="true" />
+      <created>1704749914170</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1704749914170</updated>
+    </task>
+    <task id="LOCAL−00008" summary="test classes requried channel id.">
+      <option name="closed" value="true" />
+      <created>1704749960695</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1704749960695</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="added" />
-    <option name="LAST_COMMIT_MESSAGE" value="added" />
+    <MESSAGE value="test classes requried channel id." />
+    <option name="LAST_COMMIT_MESSAGE" value="test classes requried channel id." />
   </component>
 </project>
