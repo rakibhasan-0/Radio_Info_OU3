@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9f2448e-8d7e-4742-b13c-3857d59f3e70" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Radio_Info_OU3_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Radio_Info_OU3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/ScheduleParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/ScheduleParserTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/TableCellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/TableCellTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="c9f2448e-8d7e-4742-b13c-3857d59f3e70" name="Changes" comment="Some test file required update, &#10;the channel created with its id in some test classes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,10 +27,12 @@
     "JUnit.ChannelParserTest.executor": "Run",
     "JUnit.ControllerTest.executor": "Run",
     "JUnit.MenuBarViewTest.executor": "Run",
+    "JUnit.ProgramViewTest.executor": "Run",
     "JUnit.ScheduleParserTest.checkIfAChannelSchedulesGetParsed.executor": "Run",
     "JUnit.ScheduleParserTest.executor": "Run",
     "JUnit.TableCellTest.checkIfTableCellGetsClicked.executor": "Run",
     "JUnit.TableCellTest.executor": "Run",
+    "JUnit.TimeRelatedTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
@@ -142,6 +134,18 @@
       <option name="presentableId" value="Default" />
       <updated>1704729730900</updated>
     </task>
+    <task id="LOCAL−00001" summary="Some test file required update, &#10;the channel created with its id in some test classes.">
+      <option name="closed" value="true" />
+      <created>1704748885759</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1704748885759</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Some test file required update, &#10;the channel created with its id in some test classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some test file required update, &#10;the channel created with its id in some test classes." />
   </component>
 </project>
