@@ -46,6 +46,7 @@ public class TableCellTest {
         Channel p1 = new ChannelBuilder()
                 .setChannelName(button.getText())
                 .setScheduleURL("http://api.sr.se/v2/scheduledepisodes?channelid=132")
+                .setChannelId(132)
                 .build();
 
         controller.onChannelSelected(p1);

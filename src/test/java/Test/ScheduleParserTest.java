@@ -78,6 +78,7 @@ public class ScheduleParserTest {
                 .setChannelName("p3")
                 .setScheduleURL("http://api.sr.se/v2/scheduledepisodes?channelid=132")
                 .setChannelType("Rikskanal")
+                .setChannelId(132)
                 .build();
 
         ScheduleParser parser = new ScheduleParser(p3);
