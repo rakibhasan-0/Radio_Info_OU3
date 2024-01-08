@@ -83,7 +83,7 @@ public class ScheduleParserTest {
 
         ScheduleParser parser = new ScheduleParser(p3);
         parser.fetchData();
-        assertFalse(parser.getScheduleList().isEmpty(), "Schedule list should not be empty");
+        assertFalse(parser.fetchData().isEmpty(), "Schedule list should not be empty");
     }
 
 
