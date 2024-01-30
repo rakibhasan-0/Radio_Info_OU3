@@ -17,7 +17,7 @@ public class APIManager implements Observer {
     private final Controller controller;
 
     private ArrayList<Channel> channels;
-    private   HashMap <String, ArrayList<Channel>> channelWithCategory = new HashMap<String, ArrayList<Channel>>();
+    private HashMap <String, ArrayList<Channel>> channelWithCategory = new HashMap<String, ArrayList<Channel>>();
 
     public APIManager( Controller controller) {
         this.controller = controller;
