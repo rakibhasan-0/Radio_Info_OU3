@@ -9,25 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controll/ScheduleObserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controll/ScheduleSubject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/hashMapTest.java" afterDir="false" />
+    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment=" fixed automatic cache and thread-safe??">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/ChannelObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/ChannelSubject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Cache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParserWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParserWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/CacheTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/CacheTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/ControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,35 +67,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.RadioInfo.executor&quot;: &quot;Run&quot;,
-    &quot;Application.hashMapTest.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JAR Application.Radio_Info_OU3.jar.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CacheTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ChannelParserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MenuBarViewTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProgramViewTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ScheduleParserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TableCellTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TimeRelatedTest.executor&quot;: &quot;Debug&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rakib/IdeaProjects/Radio_Info_OU3_L&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.RadioInfo.executor": "Run",
+    "Application.hashMapTest.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JAR Application.Radio_Info_OU3.jar.executor": "Run",
+    "JUnit.CacheTest.executor": "Run",
+    "JUnit.ChannelParserTest.executor": "Run",
+    "JUnit.ControllerTest.executor": "Run",
+    "JUnit.MenuBarViewTest.executor": "Run",
+    "JUnit.ProgramViewTest.executor": "Run",
+    "JUnit.ScheduleParserTest.executor": "Run",
+    "JUnit.TableCellTest.executor": "Run",
+    "JUnit.TimeRelatedTest.executor": "Debug",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/rakib/IdeaProjects/Radio_Info_OU3_L",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rakib\IdeaProjects\Radio_Info_OU3_L" />
@@ -126,7 +111,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ControllerTest">
+  <component name="RunManager" selected="Application.RadioInfo">
     <configuration name="RadioInfo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RadioInfo" />
       <module name="Radio_Info_OU3" />
@@ -177,8 +162,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ControllerTest" />
         <item itemvalue="Application.RadioInfo" />
+        <item itemvalue="JUnit.ControllerTest" />
         <item itemvalue="Application.hashMapTest" />
         <item itemvalue="JAR Application.Radio_Info_OU3.jar" />
         <item itemvalue="JUnit.TimeRelatedTest" />
@@ -271,7 +256,21 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1706657634861</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary=" fixed automatic cache and thread-safe??">
+      <option name="closed" value="true" />
+      <created>1706786186905</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1706786186905</updated>
+    </task>
+    <task id="LOCAL−00013" summary=" fixed automatic cache and thread-safe??">
+      <option name="closed" value="true" />
+      <created>1706805535834</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1706805535835</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,6 +290,7 @@
     <MESSAGE value="test classes requried channel id." />
     <MESSAGE value="jar file updated" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value=" fixed automatic cache and thread-safe??" />
+    <option name="LAST_COMMIT_MESSAGE" value=" fixed automatic cache and thread-safe??" />
   </component>
 </project>

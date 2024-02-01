@@ -67,7 +67,9 @@ public class Controller implements ChannelListener {
     private void updateChannels() {
         uiManager.setChannelUpdatingLabel();
         apiManager.fetchChannelDataFromAPI();
-        resetAutomaticUpdates();
+        // in that case the cache will get updated too.
+        updateCache();
+        //resetAutomaticUpdates();
     }
 
 
@@ -105,7 +107,7 @@ public class Controller implements ChannelListener {
     public void startAutomaticUpdates() {
         automaticUpdateTimer = new Timer(updateInterval, e -> {
             menuBarView.setCurrentTimeLabel(LocalDateTime.now());
-            // cache.clearCache(); // we will not clear all the data, I mean inclusive the keys.
+            // cache.clearCache(); // we will not clear all the data.
             activeTasks.set(0);
             System.out.println("Initial Active tasks: "+activeTasks);
             updateCache();
@@ -120,15 +122,18 @@ public class Controller implements ChannelListener {
      * That method is responsible for updating the cache. It will fetch the schedule for each channel that exits in the cache.
      */
     private void updateCache(){
-        // it will fetch the schedule for each channel that is in the cache.
-        uiManager.setCacheIsUpdatingLabel();
         List<Channel> channelsToUpdate = new ArrayList<>(cache.getCache().keySet()); // get keys in a list.
-
+        if(channelsToUpdate.isEmpty()){
+            // it means the cache is empty currently
+            return;
+        }
+        uiManager.setCacheIsUpdatingLabel();
         channelsToUpdate.forEach(channel -> {
-            //cache.clearCacheForAChannel(channel); // clear the cache a channel instead of clearing all the cache at once.
+            //cache.clearCacheForAChannel(channel);
             apiManager.fetchScheduleForChannel(channel, true);
             activeTasks.incrementAndGet();
         });
+        System.out.println("Current Active tasks: "+activeTasks);
     }
 
 
@@ -140,7 +145,7 @@ public class Controller implements ChannelListener {
      */
     public void updatedChannels (HashSet<String> types, HashMap<String,ArrayList<Channel>> channelWithType) {
         channelWithTypeForTesting = channelWithType;
-        cache.clearCache();
+        //cache.clearCache();
         SwingUtilities.invokeLater(() -> {
             if(!types.isEmpty()){
                 uiManager.setupChannelButtons(types,channelWithType);
@@ -149,6 +154,7 @@ public class Controller implements ChannelListener {
             }
         });
     }
+
 
     /**
      * get chennels, it has been used for the testing
@@ -168,9 +174,11 @@ public class Controller implements ChannelListener {
     public void processChannelAndScheduleForAutomaticUpdate(Channel channel, ArrayList<Schedule> schedules){
         // I will not use synchronize method here. Since cache is a concurrent hashmap, it will be thread safe.
         cache.addSchedules(channel, schedules);
+        System.out.println("Active tasks: "+activeTasks);
         if(activeTasks.decrementAndGet() == 0){
             SwingUtilities.invokeLater(uiManager::setCacheIsUpdatedLabel);
         }
+        System.out.println("Active tasks after decrementing : "+activeTasks+ " for channel: "+channel.getChannelName());
     }
 
 
