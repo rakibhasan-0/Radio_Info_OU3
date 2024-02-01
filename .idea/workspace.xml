@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment=" fixed automatic cache and thread-safe??">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
+    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="fixed the update that will occur automitically and manually.">
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -270,7 +268,21 @@
       <option name="presentableId" value="LOCAL−00013" />
       <updated>1706805535835</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL−00014" summary="fixed the update that will occur automitically and manually.">
+      <option name="closed" value="true" />
+      <created>1706813692443</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1706813692443</updated>
+    </task>
+    <task id="LOCAL−00015" summary="fixed the update that will occur automitically and manually.">
+      <option name="closed" value="true" />
+      <created>1706813864212</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1706813864212</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,6 +303,7 @@
     <MESSAGE value="jar file updated" />
     <MESSAGE value="test" />
     <MESSAGE value=" fixed automatic cache and thread-safe??" />
-    <option name="LAST_COMMIT_MESSAGE" value=" fixed automatic cache and thread-safe??" />
+    <MESSAGE value="fixed the update that will occur automitically and manually." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the update that will occur automitically and manually." />
   </component>
 </project>
