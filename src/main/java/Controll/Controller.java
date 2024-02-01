@@ -22,7 +22,7 @@ public class Controller implements ChannelListener {
     private Timer automaticUpdateTimer;
     private final UIManager uiManager;
     private final APIManager apiManager;
-    private int updateInterval = 60 * 1000;
+    private int updateInterval = 60 * 60 * 1000;
     private final AtomicInteger activeTasks = new AtomicInteger(0);
     private  HashMap<String,ArrayList<Channel>> channelWithTypeForTesting = new HashMap<String,ArrayList<Channel>>();
 
