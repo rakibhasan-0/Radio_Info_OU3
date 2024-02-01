@@ -22,7 +22,7 @@ public class Controller implements ChannelListener {
     private Timer automaticUpdateTimer;
     private final UIManager uiManager;
     private final APIManager apiManager;
-    private int updateInterval = 60 * 60* 1000; // 2 minutes for testing
+    private int updateInterval = 60 * 1000;
     private final AtomicInteger activeTasks = new AtomicInteger(0);
     private  HashMap<String,ArrayList<Channel>> channelWithTypeForTesting = new HashMap<String,ArrayList<Channel>>();
 
@@ -122,12 +122,14 @@ public class Controller implements ChannelListener {
      * That method is responsible for updating the cache. It will fetch the schedule for each channel that exits in the cache.
      */
     private void updateCache(){
-        // it will fetch the schedule for each channel that is in the cache.
-        uiManager.setCacheIsUpdatingLabel();
         List<Channel> channelsToUpdate = new ArrayList<>(cache.getCache().keySet()); // get keys in a list.
-
+        if(channelsToUpdate.isEmpty()){
+            // it means the cache is empty currently
+            return;
+        }
+        uiManager.setCacheIsUpdatingLabel();
         channelsToUpdate.forEach(channel -> {
-            //cache.clearCacheForAChannel(channel); // clear the cache a channel instead of clearing all the cache at once.
+            //cache.clearCacheForAChannel(channel);
             apiManager.fetchScheduleForChannel(channel, true);
             activeTasks.incrementAndGet();
         });
