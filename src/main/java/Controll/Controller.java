@@ -2,12 +2,13 @@ package Controll;
 
 import Model.*;
 import View.*;
-
 import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -21,8 +22,8 @@ public class Controller implements ChannelListener {
     private Timer automaticUpdateTimer;
     private final UIManager uiManager;
     private final APIManager apiManager;
-    private static final int DEFAULT_UPDATE_INTERVAL = 60 * 60 * 1000;
-    private int updateInterval = DEFAULT_UPDATE_INTERVAL;
+    private int updateInterval = 60 * 1000;
+    private final AtomicInteger activeTasks = new AtomicInteger(0);
     private  HashMap<String,ArrayList<Channel>> channelWithTypeForTesting = new HashMap<String,ArrayList<Channel>>();
 
 
@@ -49,11 +50,10 @@ public class Controller implements ChannelListener {
      */
     private void UpdateSchedule() {
         if (selectedChannel != null) {
-            System.out.println("Updating schedule from controller"+selectedChannel.getChannelName());
             uiManager.setScheduleIsUpdatingLabel();
             cache.clearCacheForAChannel(selectedChannel);
-            apiManager.fetchScheduleForChannel(selectedChannel);
-            resetAutomaticUpdates();
+            apiManager.fetchScheduleForChannel(selectedChannel, false);
+            // resetAutomaticUpdates();
         }else {
             JOptionPane.showMessageDialog(null, "Please select a channel first before updating the schedule.");
         }
@@ -84,6 +84,7 @@ public class Controller implements ChannelListener {
         });
     }
 
+    
     /**
      * That method resets the timer responsible for automatic updates.
      * If an existing timer is running, it is stopped before a new update cycle is started.
@@ -104,10 +105,30 @@ public class Controller implements ChannelListener {
     public void startAutomaticUpdates() {
         automaticUpdateTimer = new Timer(updateInterval, e -> {
             menuBarView.setCurrentTimeLabel(LocalDateTime.now());
-            cache.clearCache();
-            apiManager.fetchChannelDataFromAPI();
+            // cache.clearCache(); // we will not clear all the data, I mean inclusive the keys.
+            activeTasks.set(0);
+            System.out.println("Initial Active tasks: "+activeTasks);
+            updateCache();
         });
         automaticUpdateTimer.start();
+    }
+
+    
+
+
+    /**
+     * That method is responsible for updating the cache. It will fetch the schedule for each channel that exits in the cache.
+     */
+    private void updateCache(){
+        // it will fetch the schedule for each channel that is in the cache.
+        uiManager.setCacheIsUpdatingLabel();
+        List<Channel> channelsToUpdate = new ArrayList<>(cache.getCache().keySet()); // get keys in a list.
+
+        channelsToUpdate.forEach(channel -> {
+            //cache.clearCacheForAChannel(channel); // clear the cache a channel instead of clearing all the cache at once.
+            apiManager.fetchScheduleForChannel(channel, true);
+            activeTasks.incrementAndGet();
+        });
     }
 
 
@@ -136,16 +157,32 @@ public class Controller implements ChannelListener {
         return this.channelWithTypeForTesting;
     }
 
+    // TODO: check for the shareed resources.
+
 
     /**
-     * That method will chache the given channel and its program schedules.
+     * That method will cache the given channel and its program schedules.
+     * @param channel the channel.
+     * @param schedules the given channel's programs schedules.
+     */
+    public void processChannelAndScheduleForAutomaticUpdate(Channel channel, ArrayList<Schedule> schedules){
+        // I will not use synchronize method here. Since cache is a concurrent hashmap, it will be thread safe.
+        cache.addSchedules(channel, schedules);
+        if(activeTasks.decrementAndGet() == 0){
+            SwingUtilities.invokeLater(uiManager::setCacheIsUpdatedLabel);
+        }
+    }
+
+
+    /**
+     * That method will cache the given channel and its program schedules.
      * It will be responsible for updating the GUI by showing those channels on UI.
      * We made that method as synchronized so that we will get one thread's work done at
      * a time.
      * @param channel the channel.
      * @param schedules the given channel's programs schedules.
      */
-    public synchronized void getSchedule (Channel channel, ArrayList<Schedule> schedules) {
+    public synchronized void processChannelAndSchedule(Channel channel, ArrayList<Schedule> schedules) {
         cache.addSchedules(channel, schedules);
         SwingUtilities.invokeLater(() -> {
             selectedChannel  = channel;
@@ -171,7 +208,7 @@ public class Controller implements ChannelListener {
             });
         }else {
             SwingUtilities.invokeLater(uiManager::setScheduleIsUpdatingLabel);
-            apiManager.fetchScheduleForChannel(selectedChannel);
+            apiManager.fetchScheduleForChannel(selectedChannel, false);
         }
     }
 

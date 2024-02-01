@@ -1,21 +1,25 @@
 package Model;
 
-import Controll.Observer;
-import Controll.Subject;
+
+import Controll.ScheduleObserver;
+import Controll.ScheduleSubject;
+
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implements Subject {
+public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implements ScheduleSubject {
     private ArrayList<Schedule> schedules;
-    private final ArrayList<Observer> observers;
+    private final ArrayList<ScheduleObserver> observers;
     private final Channel channel;
+    private final boolean isAutoUpdate;
 
-    public ScheduleWorker(Channel channel){
+    public ScheduleWorker(Channel channel, boolean isAutoUpdate){
         this.channel = channel;
-        observers = new ArrayList<Observer>();
+        observers = new ArrayList<ScheduleObserver>();
         this.schedules = new ArrayList<Schedule>();
+        this.isAutoUpdate = isAutoUpdate;
     }
 
     @Override
@@ -37,19 +41,19 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
     }
 
     @Override
-    public void registerObserver(Observer o) {
+    public void registerObserver(ScheduleObserver o) {
         observers.add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public void removeObserver(ScheduleObserver o) {
         observers.remove(o);
     }
 
     @Override
     public void notifyObservers() {
-        for (Observer o : observers) {
-            o.scheduleUpdate(channel,schedules);
+        for (ScheduleObserver o : observers) {
+            o.scheduleUpdate(channel,schedules, isAutoUpdate);
         }
     }
 }

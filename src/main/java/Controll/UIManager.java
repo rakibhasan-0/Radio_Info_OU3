@@ -176,11 +176,22 @@ public class UIManager {
     }
 
 
+    public void setCacheIsUpdatingLabel(){
+        menuBarView.getProgramUpdatedLabel().setText("Updating Cache ----");
+    }
+
+    public void setCacheIsUpdatedLabel(){
+        LocalDateTime lastUpdatedTime = LocalDateTime.now();
+        String formattedTime = "Cache Updated: " + lastUpdatedTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        menuBarView.getProgramUpdatedLabel().setText( formattedTime );
+    }
+
+
     /**
      * It will dispaly on the gui that the program schedule is updating.
      */
     public void setScheduleIsUpdatingLabel(){
-        menuBarView.getProgramUpdatedLabel().setText("Updating----");
+        menuBarView.getProgramUpdatedLabel().setText("Fetching Schedule ----");
     }
 
 

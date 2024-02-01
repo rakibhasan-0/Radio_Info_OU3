@@ -38,7 +38,7 @@ public class CacheTest {
             assertTrue(cacheMap.isEmpty());
             ScheduleParser parser = new ScheduleParser(channel);
             ArrayList<Schedule> schedules = parser.getScheduleList();
-            Method method = cls.getDeclaredMethod("getSchedule", Channel.class, ArrayList.class);
+            Method method = cls.getDeclaredMethod("processChannelAndSchedule", Channel.class, ArrayList.class);
             method.setAccessible(true);
             method.invoke(controllerInstance,channel,schedules);
             assertFalse(cacheMap.isEmpty());

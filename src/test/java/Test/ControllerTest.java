@@ -58,7 +58,7 @@ public class ControllerTest {
         Channel channel = controller.getApiManager().getChannels().get(0);
         assertNull(controller.getCache().getSchedules(channel)); // there is no cahche for this channel...
         ScheduleParser parser = new ScheduleParser(channel);
-        controller.getSchedule(channel,parser.getScheduleList()); // now cache will be available..
+        controller.processChannelAndSchedule(channel,parser.getScheduleList()); // now cache will be available..
         JMenuItem item = menuBarView.getMenuBar().getMenu(1).getItem(0); // in index there is a channel item..
         item.doClick(); // let clcik the schedule item.....
         latch.await(20, TimeUnit.SECONDS);

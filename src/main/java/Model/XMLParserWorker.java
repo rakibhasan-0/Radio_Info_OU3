@@ -1,7 +1,8 @@
 package Model;
 
-import Controll.Observer;
-import Controll.Subject;
+import Controll.ChannelObserver;
+import Controll.ChannelSubject;
+
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ import java.util.concurrent.ExecutionException;
  * long-running task on the background thread.
  * @author Gazi Md Rakibul Hasan
  */
-public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implements Subject {
-    private final ArrayList<Observer> observers = new ArrayList<Observer>();
+public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implements ChannelSubject {
+    private final ArrayList<ChannelObserver> observers = new ArrayList<ChannelObserver>();
     private  ArrayList <Channel> channels;
 
 
@@ -40,7 +41,8 @@ public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implem
         } catch (InterruptedException e) {
             JOptionPane.showMessageDialog(null, "The operation was interrupted. Please try again.");
         } catch (ExecutionException e) {
-            JOptionPane.showMessageDialog(null, "Error: An error occurred during execution.");
+            Throwable cause = e.getCause();
+            JOptionPane.showMessageDialog(null, "Error occurred during execution: " + cause.getMessage());
         }
     }
 
@@ -49,7 +51,7 @@ public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implem
      * @param o the observer.
      */
     @Override
-    public void registerObserver(Observer o) {
+    public void registerObserver(ChannelObserver o) {
         observers.add(o);
     }
 
@@ -60,7 +62,7 @@ public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implem
      * @param o the observer.
      */
     @Override
-    public void removeObserver(Observer o) {
+    public void removeObserver(ChannelObserver o) {
         observers.remove(o);
     }
 
@@ -70,7 +72,7 @@ public class XMLParserWorker extends SwingWorker<ArrayList<Channel>,Void> implem
      */
     @Override
     public void notifyObservers() {
-        for(Observer o : observers){
+        for(ChannelObserver o : observers){
             o.channelUpdate(channels);
         }
     }

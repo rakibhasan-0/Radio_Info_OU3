@@ -9,16 +9,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="jar file updated">
+    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controll/ScheduleObserver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Controll/ScheduleSubject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/hashMapTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Test/ScheduleParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/ScheduleParserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/ChannelObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/ChannelSubject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParserWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParserWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Test/CacheTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/CacheTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Test/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Test/ControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,6 +86,7 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Application.RadioInfo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.hashMapTest.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;JAR Application.Radio_Info_OU3.jar.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.CacheTest.executor&quot;: &quot;Run&quot;,
@@ -85,7 +108,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -103,38 +126,22 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.Radio_Info_OU3.jar">
-    <configuration name="ProgramViewTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ControllerTest">
+    <configuration name="RadioInfo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RadioInfo" />
       <module name="Radio_Info_OU3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.ProgramViewTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScheduleParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="hashMapTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hashMapTest" />
       <module name="Radio_Info_OU3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.ScheduleParserTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TableCellTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Radio_Info_OU3" />
       <extension name="coverage">
         <pattern>
@@ -143,7 +150,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.TableCellTest" />
+      <option name="MAIN_CLASS_NAME" value="Test.ControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,11 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ControllerTest" />
+        <item itemvalue="Application.RadioInfo" />
+        <item itemvalue="Application.hashMapTest" />
         <item itemvalue="JAR Application.Radio_Info_OU3.jar" />
         <item itemvalue="JUnit.TimeRelatedTest" />
-        <item itemvalue="JUnit.TableCellTest" />
-        <item itemvalue="JUnit.ScheduleParserTest" />
-        <item itemvalue="JUnit.ProgramViewTest" />
       </list>
     </recent_temporary>
   </component>
@@ -257,14 +264,33 @@
       <option name="presentableId" value="LOCAL−00010" />
       <updated>1704751173381</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL−00011" summary="test">
+      <option name="closed" value="true" />
+      <created>1706657634861</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1706657634861</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="added" />
     <MESSAGE value="test classes requried channel id." />
     <MESSAGE value="jar file updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="jar file updated" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

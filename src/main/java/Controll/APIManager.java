@@ -13,9 +13,8 @@ import java.util.HashSet;
  * @author Gazi Md Rakibul Hasan
  * that class is responsible for fetching channels, channel's program schedules.
  */
-public class APIManager implements Observer {
+public class APIManager implements ScheduleObserver, ChannelObserver {
     private final Controller controller;
-
     private ArrayList<Channel> channels;
     private HashMap <String, ArrayList<Channel>> channelWithCategory = new HashMap<String, ArrayList<Channel>>();
 
@@ -77,11 +76,16 @@ public class APIManager implements Observer {
      * with the updated schedule data.
      * @param channel The channel whose schedule has been updated.
      * @param schedules The updated list of schedules for the channel.
+     * @param isAutomaticUpdate It indicates whether the update is automatic or not.
      */
     @Override
-    public void scheduleUpdate(Channel channel, ArrayList<Schedule> schedules) {
-        //System.out.println("Scheduling update/ we are getting the schedule");
-        controller.getSchedule(channel, schedules);
+    public void scheduleUpdate(Channel channel, ArrayList<Schedule> schedules, boolean isAutomaticUpdate) {
+        if(!isAutomaticUpdate) {
+            controller.processChannelAndSchedule(channel, schedules);
+        }
+        else {
+            controller.processChannelAndScheduleForAutomaticUpdate(channel, schedules);
+        }
     }
 
 
@@ -91,8 +95,8 @@ public class APIManager implements Observer {
      * It creates and executes a ScheduleWorker to perform the task in the background.
      * @param channel The channel for which the schedule data is to be fetched.
      */
-    public void fetchScheduleForChannel(Channel channel) {
-        ScheduleWorker scheduleWorker = new ScheduleWorker(channel);
+    public void fetchScheduleForChannel(Channel channel, boolean isAutomaticUpdate) {
+        ScheduleWorker scheduleWorker = new ScheduleWorker(channel, isAutomaticUpdate);
         scheduleWorker.registerObserver(this);
         scheduleWorker.execute();
     }
