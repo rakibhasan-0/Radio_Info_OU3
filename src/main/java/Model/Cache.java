@@ -66,6 +66,13 @@ public class Cache {
         }
     }
 
+    /**
+     * It returns the hash map that contains channels and its programs schedules.
+     * @return the hash map aka cahce.
+     */
+    public ConcurrentHashMap<Channel, ArrayList<Schedule>> getCache(){
+        return caches;
+    }
 
 
 }

@@ -5,7 +5,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,7 +51,7 @@ public class XMLParser implements DataFetchStrategy <Channel>{
 
     /**
      * That method initiates the parsing of the XML file, It will use the DOM parser to
-     * parse the XML file. it made public for the testing purposes.
+     * parse the XML file.
      */
     private void initiateParsingOfXML() {
         String baseUrl = "http://api.sr.se/api/v2/channels?pagination=false";
@@ -67,10 +66,11 @@ public class XMLParser implements DataFetchStrategy <Channel>{
                 xmlFileValidation(factory, builder);
                 Document doc = builder.parse(connection.getInputStream());
                 doc.normalize();
-
                 processChannels(doc);
             } else {
-                System.err.println("Error: HTTP request failed with code " + connection.getResponseCode());
+                SwingUtilities.invokeLater(() ->
+                        JOptionPane.showMessageDialog(null, "Error: HTTP request failed " ) // show that on the JOPtion.Pane()
+                );
             }
         } catch (Exception e) {
             manageErrors(e);
@@ -78,30 +78,30 @@ public class XMLParser implements DataFetchStrategy <Channel>{
     }
 
 
-    /**
-     * It will validate the xml file by using DTD validation.
-     * @param factory the factory
-     * @param builder the builder
-     */
-    private static void xmlFileValidation(DocumentBuilderFactory factory, DocumentBuilder builder) {
+    private void xmlFileValidation(DocumentBuilderFactory factory, DocumentBuilder builder) {
         factory.setValidating(true);
         factory.setNamespaceAware(true);
-        builder.setErrorHandler(new ErrorHandler(){
-            public void warning(SAXParseException e) throws SAXException {
-                System.out.println("Warning: " + e.getMessage());
+        builder.setErrorHandler(new ErrorHandler() {
+            public void warning(SAXParseException e) {
+                SwingUtilities.invokeLater(() ->
+                        JOptionPane.showMessageDialog(null, "Warning: " + e.getMessage())
+                );
             }
 
-            public void error(SAXParseException e) throws SAXException {
-                System.out.println("Error: " + e.getMessage());
-                throw e;
+            public void error(SAXParseException e) {
+                SwingUtilities.invokeLater(() ->
+                        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage())
+                );
             }
 
-            public void fatalError(SAXParseException e) throws SAXException {
-                System.out.println("Fatal error: " + e.getMessage());
-                throw e;
+            public void fatalError(SAXParseException e) {
+                SwingUtilities.invokeLater(() ->
+                        JOptionPane.showMessageDialog(null, "Fatal error: " + e.getMessage())
+                );
             }
         });
     }
+
 
 
     /**
@@ -109,18 +109,21 @@ public class XMLParser implements DataFetchStrategy <Channel>{
      * @param e Exception instance.
      */
     private void manageErrors(Exception e) {
-        if (e instanceof MalformedURLException) {
-            JOptionPane.showMessageDialog(null, "Error: The URL is disformed");
-        } else if (e instanceof IOException) {
-            JOptionPane.showMessageDialog(null, "I/O Error: Problem occurred during communication with the API");
-        } else if (e instanceof ParserConfigurationException) {
-            JOptionPane.showMessageDialog(null, "Error: Parser configuration issue");
-        } else if (e instanceof SAXException) {
-            JOptionPane.showMessageDialog(null, "Error: Issue while parsing the XML document");
-        } else {
-            JOptionPane.showMessageDialog(null, "An unexpected error occurred: " + e.getMessage());
-        }
+        SwingUtilities.invokeLater(() -> {
+            if (e instanceof MalformedURLException) {
+                JOptionPane.showMessageDialog(null, "Error: The URL is malformed");
+            } else if (e instanceof IOException) {
+                JOptionPane.showMessageDialog(null, "I/O Error: Problem occurred during communication with the API");
+            } else if (e instanceof ParserConfigurationException) {
+                JOptionPane.showMessageDialog(null, "Error: Parser configuration issue");
+            } else if (e instanceof SAXException) {
+                JOptionPane.showMessageDialog(null, "Error: Issue while parsing the XML document");
+            } else {
+                JOptionPane.showMessageDialog(null, "An unexpected error occurred: " + e.getMessage());
+            }
+        });
     }
+
 
 
     /**

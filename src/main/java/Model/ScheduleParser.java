@@ -84,29 +84,44 @@ public class ScheduleParser implements DataFetchStrategy<Schedule>{
      * @param scheduleURL the schedule url.
      */
     private void fetchDataFromAPI(String scheduleURL) {
-        if(scheduleURL != null){
-            try{
+        if (scheduleURL != null) {
+            try {
                 URL url = new URL(scheduleURL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                if(connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = factory.newDocumentBuilder();
                     Document doc = builder.parse(connection.getInputStream());
                     doc.normalize();
                     processSchedule(doc);
+                } else {
+                    invokeErrorDialog("Error: HTTP response code " + connection.getResponseCode());
                 }
             } catch (ParserConfigurationException e) {
-                JOptionPane.showMessageDialog(null, "Parser Configuration Error");
+                invokeErrorDialog("Parser Configuration Error");
             } catch (SAXException e) {
-                JOptionPane.showMessageDialog(null, "XML Parsing Error");
+                invokeErrorDialog("XML Parsing Error");
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "I/O Error");
+                invokeErrorDialog("I/O Error: " + e.getMessage());
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "There is nothing to fetch");
+        } else {
+            invokeErrorDialog("There is nothing to fetch");
         }
     }
+
+
+    /**
+     * It invokes the error dialog with the given message.
+     * @param message the message.
+     */
+    private void invokeErrorDialog(String message) {
+        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(null, message));
+    }
+
+
+
+
 
 
     /**
@@ -211,30 +226,6 @@ public class ScheduleParser implements DataFetchStrategy<Schedule>{
 
 
 
-    /**
-     * For the testing purpose
-     */
-    public void fetchChannelScedule(HttpURLConnection scheduleURL) throws IOException {
-        try {
-            scheduleURL.setRequestMethod("GET");
-        } catch (ProtocolException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            if(scheduleURL.getResponseCode() == HttpURLConnection.HTTP_OK){
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder documentBuilder = factory.newDocumentBuilder();
-                Document doc = documentBuilder.parse(scheduleURL.getInputStream());
-                doc.normalize();
-                processSchedule(doc);
-            }else {
-                JOptionPane.showMessageDialog(null,"Error: HTTP request failed with code " + scheduleURL.getResponseCode());
-            }
-        } catch (IOException | ParserConfigurationException | SAXException e) {
-            JOptionPane.showMessageDialog(null,"Error: HTTP request failed with code " + scheduleURL.getResponseCode());
-        }
-    }
-
 
     @Override
     public ArrayList<Schedule> fetchData() {
@@ -243,4 +234,29 @@ public class ScheduleParser implements DataFetchStrategy<Schedule>{
         }
         return this.getScheduleList();
     }
+
+
+    /**
+     * For the testing purpose
+     */
+    public void fetchChannelScedule(HttpURLConnection scheduleURL) {
+        try {
+            scheduleURL.setRequestMethod("GET");
+            if (scheduleURL.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+                Document doc = documentBuilder.parse(scheduleURL.getInputStream());
+                doc.normalize();
+                processSchedule(doc);
+            } else {
+                invokeErrorDialog("Error: HTTP request failed with code " + scheduleURL.getResponseCode());
+            }
+        } catch (IOException | ParserConfigurationException | SAXException e) {
+            invokeErrorDialog("Error: " + e.getMessage());
+        }
+    }
+
+
+
+
 }

@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * In that case, it will get notified when channels and programs schedules for the specific
  * channel get updated/fetched from the API.
  */
-public interface Observer {
+public interface ChannelObserver {
     void channelUpdate(ArrayList<Channel> channels);
-    void scheduleUpdate(Channel channel, ArrayList<Schedule> schedule);
+
 }
 

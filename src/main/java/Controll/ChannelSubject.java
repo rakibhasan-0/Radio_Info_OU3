@@ -6,8 +6,8 @@ package Controll;
  * events will get notified to the observers.
  * @author Gazi Md Rakibul Hasan
  */
-public interface Subject {
-    void registerObserver(Observer observer);
-    void removeObserver(Observer observer);
-    void notifyObservers();
+public interface ChannelSubject {
+    public void registerObserver(ChannelObserver observer);
+    public void removeObserver(ChannelObserver observer);
+    public void notifyObservers();
 }
