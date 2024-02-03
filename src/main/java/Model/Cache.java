@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 
 public class Cache {
-    private final ConcurrentHashMap <Channel, ArrayList<Schedule>> caches;
+    private final ConcurrentHashMap <Integer, ArrayList<Schedule>> caches;
 
     /**
      * The constructor of the Cache class, we will use the concurrent hash map in order to
@@ -25,7 +25,7 @@ public class Cache {
      * @param schedules list of schedules to the given channel.
      */
     public void addSchedules(Channel channel, ArrayList<Schedule> schedules) {
-        caches.put(channel, schedules);
+        caches.put(channel.getId(), schedules);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Cache {
      * @return list of programs schedules to the given channel.
      */
     public ArrayList<Schedule> getSchedules(Channel channel) {
-        return caches.get(channel);
+        return caches.get(channel.getId());
     }
 
     /**
@@ -45,7 +45,7 @@ public class Cache {
      * false otherwise.
      */
     private boolean hasChannel(Channel channel) {
-        return caches.containsKey(channel);
+        return caches.containsKey(channel.getId());
     }
 
     /**
@@ -61,16 +61,14 @@ public class Cache {
      * @param channel the given channel.
      */
     public void clearCacheForAChannel(Channel channel) {
-        if (channel != null && hasChannel(channel) ) {
-            caches.remove(channel);
-        }
+        caches.remove(channel.getId());
     }
 
     /**
      * It returns the hash map that contains channels and its programs schedules.
      * @return the hash map aka cahce.
      */
-    public ConcurrentHashMap<Channel, ArrayList<Schedule>> getCache(){
+    public ConcurrentHashMap<Integer, ArrayList<Schedule>> getCache(){
         return caches;
     }
 

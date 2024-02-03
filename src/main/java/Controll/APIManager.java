@@ -37,7 +37,7 @@ public class APIManager implements ScheduleObserver, ChannelObserver {
         creatingChannelWithCategory(channelWithCategory);
         getTotalCategory(channelCategory);
         this.channelWithCategory = channelWithCategory;
-        controller.updatedChannels(channelCategory, channelWithCategory);
+        controller.updatedChannelsAndCategory(channelCategory, channelWithCategory);
     }
 
 
@@ -51,6 +51,8 @@ public class APIManager implements ScheduleObserver, ChannelObserver {
             channelCategory.add(channel.getChannelType());
         }
     }
+
+
 
 
 

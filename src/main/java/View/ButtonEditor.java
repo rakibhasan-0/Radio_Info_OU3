@@ -36,6 +36,7 @@ public class ButtonEditor extends AbstractCellEditor implements TableCellEditor{
         this.button.addActionListener(e -> {
             fireEditingStopped();
             if (row >= 0 && row < schedules.size()) {
+                System.out.println("Button clicked"+ Thread.currentThread());
                 listener.onButtonClick(schedules.get(row));
             }
         });

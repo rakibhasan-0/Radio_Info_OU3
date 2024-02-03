@@ -10,7 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="fixed the update that will occur automitically and manually.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Radio_Info_OU3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/ButtonEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ButtonEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/MenuBarView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MenuBarView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hashMapTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,9 +79,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HeapSizePrinter.executor": "Run",
     "Application.RadioInfo.executor": "Run",
     "Application.hashMapTest.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "JAR Application.Radio_Info_OU3.jar (1).executor": "Run",
     "JAR Application.Radio_Info_OU3.jar.executor": "Run",
     "JUnit.CacheTest.executor": "Run",
     "JUnit.ChannelParserTest.executor": "Run",
@@ -110,15 +123,15 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.RadioInfo">
-    <configuration name="RadioInfo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RadioInfo" />
+    <configuration name="HeapSizePrinter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HeapSizePrinter" />
       <module name="Radio_Info_OU3" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="hashMapTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="hashMapTest" />
+    <configuration name="RadioInfo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RadioInfo" />
       <module name="Radio_Info_OU3" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,20 +152,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TimeRelatedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Radio_Info_OU3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Test" />
-      <option name="MAIN_CLASS_NAME" value="Test.TimeRelatedTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="Radio_Info_OU3.jar (1)" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" />
+      <method v="2" />
     </configuration>
     <configuration name="Radio_Info_OU3.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/Radio_Info_OU3.jar" />
@@ -161,10 +163,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.RadioInfo" />
-        <item itemvalue="JUnit.ControllerTest" />
-        <item itemvalue="Application.hashMapTest" />
         <item itemvalue="JAR Application.Radio_Info_OU3.jar" />
-        <item itemvalue="JUnit.TimeRelatedTest" />
+        <item itemvalue="Application.HeapSizePrinter" />
+        <item itemvalue="JAR Application.Radio_Info_OU3.jar (1)" />
+        <item itemvalue="JUnit.ControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -282,7 +284,21 @@
       <option name="presentableId" value="LOCAL−00015" />
       <updated>1706813864212</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL−00016" summary="fixed the update that will occur automitically and manually.">
+      <option name="closed" value="true" />
+      <created>1706813991406</created>
+      <option name="number" value="LOCAL−00016" />
+      <option name="presentableId" value="LOCAL−00016" />
+      <updated>1706813991406</updated>
+    </task>
+    <task id="LOCAL−00017" summary="fixed the update that will occur automitically and manually.">
+      <option name="closed" value="true" />
+      <created>1706814048872</created>
+      <option name="number" value="LOCAL−00017" />
+      <option name="presentableId" value="LOCAL−00017" />
+      <updated>1706814048872</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

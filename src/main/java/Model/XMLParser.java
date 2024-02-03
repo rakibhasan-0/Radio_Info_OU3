@@ -63,7 +63,6 @@ public class XMLParser implements DataFetchStrategy <Channel>{
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
-                xmlFileValidation(factory, builder);
                 Document doc = builder.parse(connection.getInputStream());
                 doc.normalize();
                 processChannels(doc);
@@ -76,32 +75,6 @@ public class XMLParser implements DataFetchStrategy <Channel>{
             manageErrors(e);
         }
     }
-
-
-    private void xmlFileValidation(DocumentBuilderFactory factory, DocumentBuilder builder) {
-        factory.setValidating(true);
-        factory.setNamespaceAware(true);
-        builder.setErrorHandler(new ErrorHandler() {
-            public void warning(SAXParseException e) {
-                SwingUtilities.invokeLater(() ->
-                        JOptionPane.showMessageDialog(null, "Warning: " + e.getMessage())
-                );
-            }
-
-            public void error(SAXParseException e) {
-                SwingUtilities.invokeLater(() ->
-                        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage())
-                );
-            }
-
-            public void fatalError(SAXParseException e) {
-                SwingUtilities.invokeLater(() ->
-                        JOptionPane.showMessageDialog(null, "Fatal error: " + e.getMessage())
-                );
-            }
-        });
-    }
-
 
 
     /**
