@@ -17,6 +17,9 @@ public class MenuBarView {
     private final JMenu channelTypes;
     private final JLabel programUpdatedLabel;
 
+    private ActionListener updateChannelListener;
+
+
     public MenuBarView() {
         menuBar = new JMenuBar();
         JMenu channel = new JMenu("Channel");
@@ -56,8 +59,34 @@ public class MenuBarView {
      * @param listener action listener of the menut item which represents the channel.
      */
     public void addUpdateChannelListener(ActionListener listener) {
-        JMenuItem updateChannelListener = menuBar.getMenu(0).getItem(0);
-        updateChannelListener.addActionListener(listener);
+        JMenuItem updateChannelMenuItem = menuBar.getMenu(0).getItem(0);
+        this.updateChannelListener = listener;
+        updateChannelMenuItem.addActionListener(listener);
+    }
+
+
+    /**
+     * It removes the listener from the channel menu item.
+     */
+    public void removeUpdateChannelListener() {
+        if (this.updateChannelListener != null) {
+            JMenuItem updateChannelMenuItem = menuBar.getMenu(0).getItem(0);
+            updateChannelMenuItem.removeActionListener(this.updateChannelListener);
+        }
+    }
+
+    /**
+     * it upadates the listener of the channel menu item.
+     */
+    public void updateChannelListener(){
+        JMenuItem updateChannelMenuItem = menuBar.getMenu(0).getItem(0);
+        if(updateChannelMenuItem != null) {
+            updateChannelMenuItem.removeActionListener(this.updateChannelListener);
+            updateChannelMenuItem.addActionListener(this.updateChannelListener);
+        }
+        else{
+            System.out.println("The update channel menu item is null");
+        }
     }
 
     /**

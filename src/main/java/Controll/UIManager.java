@@ -28,6 +28,7 @@ public class UIManager {
     private HashMap<String, ArrayList<Channel>> channelsWithTypes;
     private HashSet<String> types;
 
+
     /**
      * it is a constructor method of UIManager class, it initializes the UIManager with
      * the provided class which relates with GUI and a channelListener.
@@ -71,12 +72,15 @@ public class UIManager {
             button.setIcon(channel.getIcon());
             button.addActionListener(e -> {
                 selectedChannel = channel;
+                System.out.println("Selected channel from UI Manager Class:"+channel.getChannelName()+"Current Thread"+ Thread.currentThread().getName());
                 //System.out.println("Selected channel:"+channel.getChannelName());
                 channelListener.onChannelSelected(selectedChannel);
             });
             programView.addChannelButton(button);
+
         }
     }
+
 
 
     /**
