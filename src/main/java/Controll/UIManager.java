@@ -72,10 +72,10 @@ public class UIManager {
             JButton button = new JButton(channel.getChannelName());
             button.setIcon(channel.getIcon());
             button.addActionListener(e -> {
-                System.out.println("Selected channel from UI Manager Class:"+channel.getChannelName()+"Current Thread"+ Thread.currentThread().getName());
+                //System.out.println("Selected channel from UI Manager Class:"+channel.getChannelName()+"Current Thread"+ Thread.currentThread().getName());
                 //System.out.println("Selected channel:"+channel.getChannelName());
                 Boolean isUpdating = channelUpdateStatus.getOrDefault(channel.getId(), Boolean.FALSE);
-                System.out.println("Is Updating status:"+isUpdating);
+                //System.out.println("Is Updating status:"+isUpdating);
                 if (isUpdating) {
                     JOptionPane.showMessageDialog(null, "The channel is updating. Please wait for a while.");
                     return;
@@ -129,8 +129,10 @@ public class UIManager {
      * @param schedules the list of schedules.
      */
     public void updateProgramTable(Channel channel, ArrayList<Schedule> schedules) {
-        populateProgramTable(schedules);
-        menuBarView.setSelectedChannelLabel(channel.getChannelName());
+        if(SwingUtilities.isEventDispatchThread()){
+            populateProgramTable(schedules);
+            menuBarView.setSelectedChannelLabel(channel.getChannelName());
+        }
     }
 
 
@@ -198,12 +200,6 @@ public class UIManager {
 
     public void setCacheIsUpdatingLabel(){
         menuBarView.getProgramUpdatedLabel().setText("Updating Cache ----");
-    }
-
-    public void setCacheIsUpdatedLabel(){
-        LocalDateTime lastUpdatedTime = LocalDateTime.now();
-        String formattedTime = "Cache Updated: " + lastUpdatedTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        menuBarView.getProgramUpdatedLabel().setText( formattedTime );
     }
 
 

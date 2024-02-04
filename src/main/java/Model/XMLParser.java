@@ -82,7 +82,16 @@ public class XMLParser implements DataFetchStrategy <Channel>{
      * @param e Exception instance.
      */
     private void manageErrors(Exception e) {
+//        if (!SwingUtilities.isEventDispatchThread()) {
+//            System.out.println("Not on EDT: I am from the schedule parser class " + Thread.currentThread().getName());
+//        }
         SwingUtilities.invokeLater(() -> {
+//            if (!SwingUtilities.isEventDispatchThread()) {
+//                System.out.println("Still not on EDT: " + Thread.currentThread().getName());
+//            } else {
+//                System.out.println("Now on EDT: " + Thread.currentThread().getName());
+//            }
+
             if (e instanceof MalformedURLException) {
                 JOptionPane.showMessageDialog(null, "Error: The URL is malformed");
             } else if (e instanceof IOException) {
