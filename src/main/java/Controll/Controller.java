@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 /**
@@ -18,11 +20,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Controller implements ChannelListener {
     private final MenuBarView menuBarView;
     private final Cache cache;
-    private Channel selectedChannel;
+    private final AtomicReference<Channel> selectedChannel = new AtomicReference<>();
     private Timer automaticUpdateTimer;
     private final UIManager uiManager;
     private final APIManager apiManager;
-    private int updateInterval = 60 * 60 * 1000; // TODO: 60 min
+    private int updateInterval = 60 * 60 * 1000;
     private  HashMap<String,ArrayList<Channel>> channelWithTypeForTesting = new HashMap<String,ArrayList<Channel>>();
     private final ConcurrentHashMap<Integer, Channel> idToChannelMap = new ConcurrentHashMap<Integer, Channel>();
 
@@ -50,10 +52,10 @@ public class Controller implements ChannelListener {
      * the schedule from API
      */
     private void UpdateSchedule() {
-        if (selectedChannel != null) {
+        if (selectedChannel.get() != null) {
             uiManager.setScheduleIsUpdatingLabel();
-            cache.clearCacheForAChannel(selectedChannel);
-            apiManager.fetchScheduleForChannel(selectedChannel, false);
+            cache.clearCacheForAChannel(selectedChannel.get());
+            apiManager.fetchScheduleForChannel(selectedChannel.get(), false);
             // resetAutomaticUpdates();
         }else {
             JOptionPane.showMessageDialog(null, "Please select a channel first before updating the schedule.");
@@ -154,8 +156,6 @@ public class Controller implements ChannelListener {
         return this.channelWithTypeForTesting;
     }
 
-    // TODO: check for the shareed resources.
-
 
     /**
      * That method will cache the given channel and its program schedules.
@@ -164,6 +164,9 @@ public class Controller implements ChannelListener {
      */
     public synchronized void processChannelAndScheduleForAutomaticUpdate(Channel channel, ArrayList<Schedule> schedules){
         cache.addSchedules(channel, schedules);
+        SwingUtilities.invokeLater(uiManager::setCacheIsUpdatingLabel);
+        //uiManager.getChannelUpdateStatus().put(channel.getId(), Boolean.FALSE);
+
         System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for channel Automatic : " + channel.getChannelName());
     }
 
@@ -178,17 +181,19 @@ public class Controller implements ChannelListener {
      */
     public synchronized void processChannelAndSchedule(Channel channel, ArrayList<Schedule> schedules) {
         //System.out.println(" for channel not Automatic : "+channel.getChannelName());
-        System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for channel manuel : " + channel.getChannelName());
+        //System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for channel manuel : " + channel.getChannelName());
+        //System.out.println("channel name: "+channel.getChannelName()+ "status: "  + uiManager.getChannelUpdateStatus().get(channel.getId()));
+        uiManager.getChannelUpdateStatus().put(channel.getId(), Boolean.FALSE);
+        //System.out.println("channel name: "+channel.getChannelName()+ "status after update: "  + uiManager.getChannelUpdateStatus().get(channel.getId()));
         cache.addSchedules(channel, schedules);
-        if(schedules.isEmpty()){
-            System.out.println("schedule is empty for channel: "+schedules.toString());
-        }
         SwingUtilities.invokeLater(() -> {
-            selectedChannel  = channel;
+            selectedChannel.set(channel);
             uiManager.updateProgramTable(channel, schedules);
             uiManager.setScheduleUpdatedLabel(channel.getChannelName());
         });
     }
+
+
 
 
     /**
@@ -201,16 +206,17 @@ public class Controller implements ChannelListener {
     public void onChannelSelected(Channel channel) {
         idToChannelMap.put(channel.getId(), channel);
         ArrayList<Schedule> schedules = cache.getSchedules(channel);
+        selectedChannel.set(channel);
 
-        selectedChannel = channel;
-        System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for selected Channel : " + selectedChannel.getChannelName());
+        //System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for selected Channel : " + selectedChannel.get().getChannelName());
         if (schedules != null) {
+            uiManager.getChannelUpdateStatus().put(channel.getId(), Boolean.FALSE);
             SwingUtilities.invokeLater(() -> {
                 uiManager.updateProgramTable(channel, schedules);
             });
         } else {
             SwingUtilities.invokeLater(uiManager::setScheduleIsUpdatingLabel);
-            apiManager.fetchScheduleForChannel(channel, false);
+            apiManager.fetchScheduleForChannel(selectedChannel.get(), false);
         }
 
     }
@@ -223,8 +229,10 @@ public class Controller implements ChannelListener {
      */
     @Override
     public void onButtonClick(Schedule schedule) {
-        System.out.println("Check the schedule thread "+Thread.currentThread().getName());
-        uiManager.showDetailsOfProgram(schedule);
+        //System.out.println("Check the schedule thread "+Thread.currentThread().getName());
+        SwingUtilities.invokeLater(() -> {
+            uiManager.showDetailsOfProgram(schedule);
+        });
         //uiManager.setScheduleUpdatedLabel();
     }
 
