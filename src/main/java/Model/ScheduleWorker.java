@@ -36,6 +36,7 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
         } catch (ExecutionException e) {
            JOptionPane.showMessageDialog(null, "Execution: " + "Could not get schedules");
         }
+
     }
 
     @Override

@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -22,11 +23,11 @@ import java.util.HashSet;
 public class UIManager {
     private final ProgramView programView;
     private final MenuBarView menuBarView;
-    private Channel selectedChannel;
     private final ChannelListener channelListener;
     private final ProgramDetails programDetails;
     private HashMap<String, ArrayList<Channel>> channelsWithTypes;
     private HashSet<String> types;
+    private ConcurrentHashMap<Integer, Boolean> channelUpdateStatus = new ConcurrentHashMap<Integer, Boolean>();
 
 
     /**
@@ -71,16 +72,31 @@ public class UIManager {
             JButton button = new JButton(channel.getChannelName());
             button.setIcon(channel.getIcon());
             button.addActionListener(e -> {
-                selectedChannel = channel;
                 System.out.println("Selected channel from UI Manager Class:"+channel.getChannelName()+"Current Thread"+ Thread.currentThread().getName());
                 //System.out.println("Selected channel:"+channel.getChannelName());
-                channelListener.onChannelSelected(selectedChannel);
+                Boolean isUpdating = channelUpdateStatus.getOrDefault(channel.getId(), Boolean.FALSE);
+                System.out.println("Is Updating status:"+isUpdating);
+                if (isUpdating) {
+                    JOptionPane.showMessageDialog(null, "The channel is updating. Please wait for a while.");
+                    return;
+                } else {
+                    // Mark the channel as updating
+                    channelUpdateStatus.put(channel.getId(), Boolean.TRUE);
+                    channelListener.onChannelSelected(channel);
+                }
             });
             programView.addChannelButton(button);
-
         }
     }
 
+
+    /**
+     * The hash map that contains the information about the channel update status.
+     * @return the hash map that contains the information about the channel update status.
+     */
+    public ConcurrentHashMap<Integer, Boolean> getChannelUpdateStatus() {
+        return channelUpdateStatus;
+    }
 
 
     /**
