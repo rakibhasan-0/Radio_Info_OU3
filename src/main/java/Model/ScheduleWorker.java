@@ -20,7 +20,7 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
 
     @Override
     protected ArrayList<Schedule> doInBackground()  {
-        System.out.println("Thread name" + Thread.currentThread().getName());
+//        System.out.println("Thread name" + Thread.currentThread().getName());
         DataFetchStrategy<Schedule> parser = new ScheduleParser(channel);
         return parser.fetchData();
     }
@@ -28,7 +28,7 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
     @Override
     protected void done() {
         try {
-            System.out.println("done() Thread name: " + Thread.currentThread().getName()); // This should print the EDT thread name.
+            //System.out.println("done() Thread name: " + Thread.currentThread().getName()); // This should print the EDT thread name.
             schedules = get();
             notifyObservers();
         } catch (InterruptedException e) {

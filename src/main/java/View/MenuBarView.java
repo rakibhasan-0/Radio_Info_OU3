@@ -19,6 +19,8 @@ public class MenuBarView {
 
     private ActionListener updateChannelListener;
 
+    private ActionListener updateScheduleListener;
+
 
     public MenuBarView() {
         menuBar = new JMenuBar();
@@ -61,7 +63,27 @@ public class MenuBarView {
     public void addUpdateChannelListener(ActionListener listener) {
         JMenuItem updateChannelMenuItem = menuBar.getMenu(0).getItem(0);
         this.updateChannelListener = listener;
-        updateChannelMenuItem.addActionListener(listener);
+        updateChannelMenuItem.addActionListener(updateScheduleListener);
+    }
+
+
+    /**
+     * removes the listener from the schedule menu item.
+     */
+    public void removeUpdateScheduleListener() {
+        JMenuItem scheduleListener = menuBar.getMenu(1).getItem(0);
+        scheduleListener.removeActionListener(this.updateScheduleListener);
+    }
+
+    /**
+     * updates the listener of the schedule menu item.
+     */
+    public void updateScheduleListener() {
+        JMenuItem scheduleItem = menuBar.getMenu(1).getItem(0);
+        if(scheduleItem  != null) {
+            scheduleItem.removeActionListener(this.updateScheduleListener);
+            scheduleItem.addActionListener(this.updateScheduleListener);
+        }
     }
 
 
@@ -81,11 +103,7 @@ public class MenuBarView {
     public void updateChannelListener(){
         JMenuItem updateChannelMenuItem = menuBar.getMenu(0).getItem(0);
         if(updateChannelMenuItem != null) {
-            updateChannelMenuItem.removeActionListener(this.updateChannelListener);
             updateChannelMenuItem.addActionListener(this.updateChannelListener);
-        }
-        else{
-            System.out.println("The update channel menu item is null");
         }
     }
 
@@ -102,8 +120,9 @@ public class MenuBarView {
      *                 specified channel'update.
      */
     public void addUpdateScheduleListener(ActionListener listener) {
+        this.updateScheduleListener = listener;
         JMenuItem scheduleListener = menuBar.getMenu(1).getItem(0);
-        scheduleListener.addActionListener(listener);
+        scheduleListener.addActionListener(this.updateScheduleListener);
     }
 
 

@@ -9,12 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="updated">
+    <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="updated and fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/MenuBarView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MenuBarView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,7 +301,14 @@
       <option name="presentableId" value="LOCAL−00018" />
       <updated>1706953849338</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL−00019" summary="updated and fixed">
+      <option name="closed" value="true" />
+      <created>1707043361564</created>
+      <option name="number" value="LOCAL−00019" />
+      <option name="presentableId" value="LOCAL−00019" />
+      <updated>1707043361564</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -321,6 +331,7 @@
     <MESSAGE value=" fixed automatic cache and thread-safe??" />
     <MESSAGE value="fixed the update that will occur automitically and manually." />
     <MESSAGE value="updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated" />
+    <MESSAGE value="updated and fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated and fixed" />
   </component>
 </project>
