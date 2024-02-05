@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="updated and fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Radio_Info_OU3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,38 +71,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.HeapSizePrinter.executor": "Run",
-    "Application.RadioInfo.executor": "Run",
-    "Application.hashMapTest.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JAR Application.Radio_Info_OU3.jar (1).executor": "Run",
-    "JAR Application.Radio_Info_OU3.jar.executor": "Run",
-    "JUnit.CacheTest.executor": "Run",
-    "JUnit.ChannelParserTest.executor": "Run",
-    "JUnit.ControllerTest.executor": "Run",
-    "JUnit.MenuBarViewTest.executor": "Run",
-    "JUnit.ProgramViewTest.executor": "Run",
-    "JUnit.ScheduleParserTest.executor": "Run",
-    "JUnit.TableCellTest.executor": "Run",
-    "JUnit.Test in Radio_Info_OU3.executor": "Run",
-    "JUnit.TimeRelatedTest.executor": "Debug",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/rakib/IdeaProjects/Radio_Info_OU3_L",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.HeapSizePrinter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RadioInfo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.hashMapTest.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JAR Application.Radio_Info_OU3.jar (1).executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.Radio_Info_OU3.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CacheTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ChannelParserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MenuBarViewTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProgramViewTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ScheduleParserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TableCellTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.Test in Radio_Info_OU3.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TimeRelatedTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rakib/IdeaProjects/Radio_Info_OU3_L&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rakib\IdeaProjects\Radio_Info_OU3_L" />
@@ -332,7 +329,14 @@
       <option name="presentableId" value="LOCAL−00023" />
       <updated>1707171198932</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL−00024" summary="updated and fixed">
+      <option name="closed" value="true" />
+      <created>1707173055439</created>
+      <option name="number" value="LOCAL−00024" />
+      <option name="presentableId" value="LOCAL−00024" />
+      <updated>1707173055439</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
