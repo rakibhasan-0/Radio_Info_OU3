@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -116,19 +119,27 @@ public class Controller implements ChannelListener {
         automaticUpdateTimer.start();
     }
 
-    
-
 
     /**
-     * That method is responsible for updating the cache. It will fetch the schedule for each channel that exits in the cache.
+     *  That method is responsible for updating the cache by fetching the schedule for each channel automitaclly.
      */
-    private void updateCache(){
-        List<Integer> channelsToUpdate = new ArrayList<>(cache.getCache().keySet()); // get keys in a list.
-//        System.out.println("Thread Name (updateCache): "+Thread.currentThread().getName());
-        channelsToUpdate.forEach(channel -> {
-            //cache.clearCacheForAChannel(channel);
-            apiManager.fetchScheduleForChannel(idToChannelMap.get(channel), true);
-        });
+    private void updateCache() {
+        System.out.println("Thread name (updateCache): "+Thread.currentThread().getName());
+        new Thread(() -> {
+            List<Integer> channelsToUpdate = new ArrayList<>(cache.getCache().keySet());
+            for (Integer channel : channelsToUpdate) {
+                try {
+                    Thread.sleep(1800); // Introduce a delay between each fetch so that it eases on the JVM memory.
+                    apiManager.fetchScheduleForChannel(idToChannelMap.get(channel), true);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    SwingUtilities.invokeLater(() -> {
+                        JOptionPane.showMessageDialog(null, "The update process was interrupted.");
+                    });
+                    break;
+                }
+            }
+        }).start();
     }
 
 
@@ -165,10 +176,11 @@ public class Controller implements ChannelListener {
      * @param channel the channel.
      * @param schedules the given channel's programs schedules.
      */
-    public synchronized void processChannelAndScheduleForAutomaticUpdate(Channel channel, ArrayList<Schedule> schedules){
+    public void processChannelAndScheduleForAutomaticUpdate(Channel channel, ArrayList<Schedule> schedules){
+        System.out.println("Thread name (processChannelAndScheduleForAutomaticUpdate): "+Thread.currentThread().getName());
+        System.out.println("For AUTOMATIC UPDATE Channel name: "+channel.getChannelName());
         cache.addSchedules(channel, schedules);
-        System.out.println("For channel Automatic : " + channel.getChannelName());
-        //System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for channel Automatic : " + channel.getChannelName());
+        System.out.println("-------------------------------");
     }
 
 
@@ -181,10 +193,9 @@ public class Controller implements ChannelListener {
      * @param schedules the given channel's programs schedules.
      */
     public synchronized void processChannelAndSchedule(Channel channel, ArrayList<Schedule> schedules) {
-        System.out.println(" for channel not Automatic : "+channel.getChannelName());
-        //System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for channel manuel : " + channel.getChannelName());
-        //System.out.println("channel name: "+channel.getChannelName()+ "status: "  + uiManager.getChannelUpdateStatus().get(channel.getId()));
         uiManager.getChannelUpdateStatus().put(channel.getId(), Boolean.FALSE);
+//        System.out.println("Thread name (processChannelAndSchedule): "+Thread.currentThread().getName());
+//        System.out.println("For MANUAL update"+ channel.getChannelName());
         cache.addSchedules(channel, schedules);
         SwingUtilities.invokeLater(() -> {
             selectedChannel.set(channel);
@@ -210,10 +221,10 @@ public class Controller implements ChannelListener {
         selectedChannel.set(channel);
         //System.out.println("[" + Thread.currentThread().getName() + " at " + System.currentTimeMillis() + "] for selected Channel : " + selectedChannel.get().getChannelName());
         if (schedules != null) {
-           // System.out.println("This code block is running on the EDT.");
+            // System.out.println("This code block is running on the EDT.");
             uiManager.getChannelUpdateStatus().put(channel.getId(), Boolean.FALSE);
             SwingUtilities.invokeLater(() -> {
-                uiManager.updateProgramTable(channel, schedules);
+                uiManager.updateProgramTable(selectedChannel.get(), schedules);
             });
         } else {
 //            if(SwingUtilities.isEventDispatchThread()){

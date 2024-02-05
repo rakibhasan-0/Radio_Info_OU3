@@ -82,6 +82,7 @@ public class APIManager implements ScheduleObserver, ChannelObserver {
      */
     @Override
     public void scheduleUpdate(Channel channel, ArrayList<Schedule> schedules, boolean isAutomaticUpdate) {
+//        System.out.println("API manager: after complete " + channel.getChannelName() + "thread name: " + Thread.currentThread().getName());
         if(!isAutomaticUpdate) {
             controller.processChannelAndSchedule(channel, schedules);
         }
@@ -98,6 +99,7 @@ public class APIManager implements ScheduleObserver, ChannelObserver {
      * @param channel The channel for which the schedule data is to be fetched.
      */
     public void fetchScheduleForChannel(Channel channel, boolean isAutomaticUpdate) {
+//        System.out.println("API manager: " + channel.getChannelName() + "thread name: " + Thread.currentThread().getName());
         ScheduleWorker scheduleWorker = new ScheduleWorker(channel, isAutomaticUpdate);
         scheduleWorker.registerObserver(this);
         scheduleWorker.execute();

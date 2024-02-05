@@ -92,7 +92,6 @@ public class ScheduleBuilder {
             BufferedImage image = ImageIO.read(url);
             return image.getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH);
         } catch (IOException e) {
-            // try to find the right expetion
             JOptionPane.showMessageDialog(null, "Couldn't find image");
             return null;
         }
