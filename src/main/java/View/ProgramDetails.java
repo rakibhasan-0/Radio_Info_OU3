@@ -37,8 +37,7 @@ public class ProgramDetails{
                 displayProgramDetailsWithoutImage(programDetails);
             }
         } catch (Exception e) {
-            e.printStackTrace(); // TODO: no stack trace.
-
+           JOptionPane.showMessageDialog(null, "Could not display program details.");
         }
     }
 

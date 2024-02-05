@@ -12,6 +12,7 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
     private final boolean isAutoUpdate;
 
     public ScheduleWorker(Channel channel, boolean isAutoUpdate){
+        //System.out.println("Thread name :: I am from Schedule Worker class" + Thread.currentThread().getName());
         this.channel = channel;
         observers = new ArrayList<ScheduleObserver>();
         this.schedules = new ArrayList<Schedule>();
@@ -20,10 +21,13 @@ public class ScheduleWorker extends SwingWorker<ArrayList<Schedule>,Void> implem
 
     @Override
     protected ArrayList<Schedule> doInBackground()  {
-//        System.out.println("Thread name" + Thread.currentThread().getName());
+        //System.out.println("Thread name I am  supposed to be background thread" + Thread.currentThread().getName());
         DataFetchStrategy<Schedule> parser = new ScheduleParser(channel);
         return parser.fetchData();
     }
+
+
+
 
     @Override
     protected void done() {

@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -84,15 +85,18 @@ public class ScheduleParser implements DataFetchStrategy<Schedule>{
      * @param scheduleURL the schedule url.
      */
     private void fetchDataFromAPI(String scheduleURL) {
+        HttpURLConnection connection = null;
+        InputStream inputStream = null;
         if (scheduleURL != null) {
             try {
                 URL url = new URL(scheduleURL);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                     DocumentBuilder builder = factory.newDocumentBuilder();
-                    Document doc = builder.parse(connection.getInputStream());
+                    inputStream = connection.getInputStream();
+                    Document doc = builder.parse(inputStream);
                     doc.normalize();
                     processSchedule(doc);
                 } else {
@@ -104,9 +108,30 @@ public class ScheduleParser implements DataFetchStrategy<Schedule>{
                 invokeErrorDialog("XML Parsing Error");
             } catch (IOException e) {
                 invokeErrorDialog("I/O Error: " + e.getMessage());
+            } finally {
+                closeResources(inputStream, connection);
             }
         } else {
             invokeErrorDialog("There is nothing to fetch");
+        }
+    }
+
+
+    /**
+     * It closes the input stream and the connection.
+     * @param inputStream the input stream.
+     * @param connection the connection.
+     */
+    private void closeResources(InputStream inputStream, HttpURLConnection connection) {
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                invokeErrorDialog("I/O Error: " + e.getMessage());
+            }
+        }
+        if (connection != null) {
+            connection.disconnect();
         }
     }
 

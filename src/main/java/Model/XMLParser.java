@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -55,24 +56,49 @@ public class XMLParser implements DataFetchStrategy <Channel>{
      */
     private void initiateParsingOfXML() {
         String baseUrl = "http://api.sr.se/api/v2/channels?pagination=false";
+        HttpURLConnection connection = null;
+        InputStream inputStream = null;
         try {
             URL url = new URL(baseUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(connection.getInputStream());
+                inputStream = connection.getInputStream();
+                Document doc = builder.parse(inputStream);
                 doc.normalize();
                 processChannels(doc);
             } else {
                 SwingUtilities.invokeLater(() ->
-                        JOptionPane.showMessageDialog(null, "Error: HTTP request failed " ) // edt.
+                        JOptionPane.showMessageDialog(null, "Error: HTTP request failed " ) // Ensure this runs on EDT.
                 );
             }
         } catch (Exception e) {
             manageErrors(e);
+        } finally {
+            closeResources(inputStream, connection);
+        }
+    }
+
+
+    /**
+     * It closes the input stream and the connection.
+     * @param inputStream the input stream.
+     * @param connection the connection.
+     */
+    private void closeResources(InputStream inputStream, HttpURLConnection connection) {
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+               SwingUtilities.invokeLater(() ->
+                       JOptionPane.showMessageDialog(null, "Error: Failed to close input stream") // Ensure this runs on EDT.
+               );
+            }
+        }
+        if (connection != null) {
+            connection.disconnect();
         }
     }
 
