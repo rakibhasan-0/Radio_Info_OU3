@@ -14,10 +14,6 @@
       <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/UIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/MenuBarView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MenuBarView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,7 +304,14 @@
       <option name="presentableId" value="LOCAL−00019" />
       <updated>1707043361564</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL−00020" summary="updated and fixed">
+      <option name="closed" value="true" />
+      <created>1707090009976</created>
+      <option name="number" value="LOCAL−00020" />
+      <option name="presentableId" value="LOCAL−00020" />
+      <updated>1707090009976</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

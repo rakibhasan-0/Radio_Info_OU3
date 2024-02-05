@@ -27,7 +27,7 @@ public class UIManager {
     private final ProgramDetails programDetails;
     private HashMap<String, ArrayList<Channel>> channelsWithTypes;
     private HashSet<String> types;
-    private ConcurrentHashMap<Integer, Boolean> channelUpdateStatus = new ConcurrentHashMap<Integer, Boolean>();
+    private final ConcurrentHashMap<Integer, Boolean> channelUpdateStatus = new ConcurrentHashMap<Integer, Boolean>();
 
 
     /**
@@ -57,6 +57,7 @@ public class UIManager {
             channelType.addActionListener(e->displayChannels(types));
         }
     }
+
 
 
     /**
@@ -197,10 +198,6 @@ public class UIManager {
         menuBarView.getProgramUpdatedLabel().setText( formattedTime );
     }
 
-
-    public void setCacheIsUpdatingLabel(){
-        menuBarView.getProgramUpdatedLabel().setText("Updating Cache ----");
-    }
 
 
     /**
