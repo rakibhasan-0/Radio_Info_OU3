@@ -120,11 +120,6 @@ public class ScheduleParser implements DataFetchStrategy<Schedule>{
 //            System.out.println("Not on EDT: I am from the schedule parser class " + Thread.currentThread().getName());
 //        }
         SwingUtilities.invokeLater(() -> {
-            if (!SwingUtilities.isEventDispatchThread()) {
-                System.out.println("Still not on EDT: " + Thread.currentThread().getName());
-            } else {
-                System.out.println("Now on EDT: " + Thread.currentThread().getName());
-            }
             JOptionPane.showMessageDialog(null, message);
         });
     }

@@ -68,7 +68,7 @@ public class XMLParser implements DataFetchStrategy <Channel>{
                 processChannels(doc);
             } else {
                 SwingUtilities.invokeLater(() ->
-                        JOptionPane.showMessageDialog(null, "Error: HTTP request failed " ) // show that on the JOPtion.Pane()
+                        JOptionPane.showMessageDialog(null, "Error: HTTP request failed " ) // edt.
                 );
             }
         } catch (Exception e) {
