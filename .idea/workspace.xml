@@ -11,15 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fcf9d53f-d8cc-4749-81c1-705134d25e0c" name="Changes" comment="updated and fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OU3(RadioInfo)-1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/OU3(RadioInfo).pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/APIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Radio_Info_OU3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Radio_Info_OU3_jar/Radio_Info_OU3.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controll/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/ScheduleWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/XMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProgramDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProgramDetails.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +121,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RadioInfo">
+  <component name="RunManager" selected="JAR Application.Radio_Info_OU3.jar">
     <configuration name="HeapSizePrinter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HeapSizePrinter" />
       <module name="Radio_Info_OU3" />
@@ -160,9 +154,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Radio_Info_OU3.jar" />
         <item itemvalue="Application.RadioInfo" />
         <item itemvalue="JUnit.Test in Radio_Info_OU3" />
-        <item itemvalue="JAR Application.Radio_Info_OU3.jar" />
         <item itemvalue="Application.HeapSizePrinter" />
         <item itemvalue="JAR Application.Radio_Info_OU3.jar (1)" />
       </list>
@@ -331,7 +325,14 @@
       <option name="presentableId" value="LOCAL−00022" />
       <updated>1707129382102</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL−00023" summary="updated and fixed">
+      <option name="closed" value="true" />
+      <created>1707171198932</created>
+      <option name="number" value="LOCAL−00023" />
+      <option name="presentableId" value="LOCAL−00023" />
+      <updated>1707171198932</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

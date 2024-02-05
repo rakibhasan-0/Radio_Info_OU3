@@ -3,18 +3,12 @@ package Controll;
 import Model.*;
 import View.*;
 import javax.swing.*;
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 
@@ -30,8 +24,8 @@ public class Controller implements ChannelListener {
     private final UIManager uiManager;
     private final APIManager apiManager;
     private int updateInterval = 60 * 60 * 1000;
-    private  HashMap<String,ArrayList<Channel>> channelWithTypeForTesting = new HashMap<String,ArrayList<Channel>>();
-    private final ConcurrentHashMap<Integer, Channel> idToChannelMap = new ConcurrentHashMap<Integer, Channel>();
+    private  HashMap<String,ArrayList<Channel>> channelWithTypeForTesting = new HashMap<>();
+    private final ConcurrentHashMap<Integer, Channel> idToChannelMap = new ConcurrentHashMap<>();
 
     /**
      * Constructor of the controller class. It takes two GUI classes as parameters and instantiates
@@ -84,12 +78,8 @@ public class Controller implements ChannelListener {
      * That method responisble for updating channels and a selected channel's programs schedules.
      */
     private void setupMenuListeners() {
-        menuBarView.addUpdateChannelListener(e -> {
-            updateChannels();
-        });
-        menuBarView.addUpdateScheduleListener(e -> {
-            UpdateSchedule();
-        });
+        menuBarView.addUpdateChannelListener(e -> updateChannels());
+        menuBarView.addUpdateScheduleListener(e -> UpdateSchedule());
     }
 
 
@@ -122,20 +112,19 @@ public class Controller implements ChannelListener {
 
     /**
      *  That method is responsible for updating the cache by fetching the schedule for each channel automitaclly.
+     *  It delays the fetching of each channel's schedule by 1900 milliseconds.
      */
     private void updateCache() {
-        System.out.println("Thread name (updateCache): "+Thread.currentThread().getName());
+//        System.out.println("Thread name (updateCache): "+Thread.currentThread().getName());
         new Thread(() -> {
             List<Integer> channelsToUpdate = new ArrayList<>(cache.getCache().keySet());
             for (Integer channel : channelsToUpdate) {
                 try {
-                    Thread.sleep(1800); // Introduce a delay between each fetch so that it eases on the JVM memory.
+                    Thread.sleep(1900); // Introduce a delay between each fetch so that it eases on the JVM memory.
                     apiManager.fetchScheduleForChannel(idToChannelMap.get(channel), true);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                    SwingUtilities.invokeLater(() -> {
-                        JOptionPane.showMessageDialog(null, "The update process was interrupted.");
-                    });
+                    SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(null, "The update process was interrupted."));
                     break;
                 }
             }
@@ -177,10 +166,10 @@ public class Controller implements ChannelListener {
      * @param schedules the given channel's programs schedules.
      */
     public void processChannelAndScheduleForAutomaticUpdate(Channel channel, ArrayList<Schedule> schedules){
-        System.out.println("Thread name (processChannelAndScheduleForAutomaticUpdate): "+Thread.currentThread().getName());
-        System.out.println("For AUTOMATIC UPDATE Channel name: "+channel.getChannelName());
+//        System.out.println("Thread name (processChannelAndScheduleForAutomaticUpdate): "+Thread.currentThread().getName());
+//        System.out.println("For AUTOMATIC UPDATE Channel name: "+channel.getChannelName());
         cache.addSchedules(channel, schedules);
-        System.out.println("-------------------------------");
+//        System.out.println("-------------------------------");
     }
 
 
@@ -223,9 +212,7 @@ public class Controller implements ChannelListener {
         if (schedules != null) {
             // System.out.println("This code block is running on the EDT.");
             uiManager.getChannelUpdateStatus().put(channel.getId(), Boolean.FALSE);
-            SwingUtilities.invokeLater(() -> {
-                uiManager.updateProgramTable(selectedChannel.get(), schedules);
-            });
+            SwingUtilities.invokeLater(() -> uiManager.updateProgramTable(selectedChannel.get(), schedules));
         } else {
 //            if(SwingUtilities.isEventDispatchThread()){
 //                System.out.println("This label is about to update on the EDT");
